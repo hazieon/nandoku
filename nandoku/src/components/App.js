@@ -15,7 +15,6 @@ function App() {
           </Route>
           <Route path="/">
             <Menu />
-            {/* <CatPanel title={"hello"} score={"0"} /> */}
           </Route>
         </Switch>
       </div>

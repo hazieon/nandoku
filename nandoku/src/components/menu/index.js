@@ -1,6 +1,5 @@
 import styles from "./index.module.css";
 import Title from "../heading";
-import { Box, useColorModeValue } from "@chakra-ui/react";
 import CatPanel from "../catPanel";
 import { categories } from "./categories";
 function Menu() {

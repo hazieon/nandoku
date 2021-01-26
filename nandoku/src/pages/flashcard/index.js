@@ -1,7 +1,6 @@
 import React, { useReducer } from "react";
 import styles from "./index.module.css";
 import Title from "../../components/heading";
-import { Box, useColorModeValue } from "@chakra-ui/react";
 
 // let title = "花";
 // let kanji = [
@@ -36,8 +35,6 @@ import { Box, useColorModeValue } from "@chakra-ui/react";
 //useReducer state - initial text (category name kanji or some image)
 //render random index of kanji array and 4 potential answers
 
-//props:{title, kanji}
-
 const initialState = {
   game: false,
   score: 0,
@@ -46,6 +43,7 @@ const initialState = {
   kanjiSet: [],
 };
 
+//reducer function to update game state object
 function reducer(state, action) {
   switch (action.type) {
     default:
@@ -67,12 +65,11 @@ function reducer(state, action) {
 function FlashcardPanel({ kanji, title }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("flashcard");
-  function randomIndex() {
+  console.log({ kanji, title });
+
+  function randomKanji(index) {
     let randomIndex = Math.floor(Math.random() * kanji.length);
     console.log({ randomIndex });
-    randomKanji(randomIndex);
-  }
-  function randomKanji(index) {
     let randomKanji = kanji(index);
     console.log({ randomKanji });
     return randomKanji;
@@ -82,14 +79,14 @@ function FlashcardPanel({ kanji, title }) {
       <Title text={title}></Title>
       <button
         onClick={() => {
-          dispatch({ type: "start", value: randomIndex });
+          dispatch({ type: "start", value: randomKanji() });
         }}
       >
         start
       </button>
       <button
         onClick={() => {
-          dispatch({ type: "setKanji", value: randomIndex() });
+          dispatch({ type: "setKanji", value: randomKanji() });
         }}
       >
         generate

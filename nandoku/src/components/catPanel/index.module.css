@@ -22,31 +22,6 @@
 .categoryName {
   font-size: 2em;
 }
-/*   
-  .thumb:hover {
-    transform: rotate(180deg);
-    transition: transform 2s;
-  }
-  
-  .hand {
-    position: relative;
-    top: 0;
-  }
-  
-  .quiz:hover {
-    opacity: 0;
-    transition: opacity 5s;
-  }
-  
-  .hand:hover {
-    position: relative;
-    top: -100px;
-    transition: top 3s;
-  }
-  .deck:hover {
-    position: relative;
-  } */
-
 /* css for responsive text, box, etc dimensions: */
 @media only screen and (max-width: 499px) {
   /* .categoryName {
