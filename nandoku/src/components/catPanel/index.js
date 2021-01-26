@@ -8,7 +8,7 @@ function CatPanel({ link, kanji, title, myClass, src, alt, id, score }) {
     <Center>
       <VStack className={styles.container}>
         <Box className={styles.box}>
-          <Link to={link}>
+          <Link to={{ path: link, kanji: kanji }}>
             <p className={styles.categoryName}>{title}</p>
           </Link>
         </Box>

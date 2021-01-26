@@ -16,8 +16,8 @@ function Menu() {
                 className={c.myClass}
                 title={c.title}
                 score={c.score}
-                link={c.link}
-                kanji={c.kanji}
+                link={c.link.path}
+                kanji={c.link.data}
               />
             </section>
           );

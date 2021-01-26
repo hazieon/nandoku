@@ -2,11 +2,10 @@ import { flowers } from "./flowers";
 
 const categories = [
   {
-    link: "/FlashcardPanel",
+    link: { path: "/FlashcardPanel", data: flowers },
     title: "花",
     myClass: "cat flowers",
     score: 0,
-    kanji: flowers,
   },
   {
     link: "/",
