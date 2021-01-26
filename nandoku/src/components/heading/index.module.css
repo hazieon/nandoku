@@ -1,0 +1,40 @@
+.heading {
+  font-size: 3rem;
+  margin: auto;
+  text-shadow: 0px 3px 3px#e295d8;
+  text-align: center;
+}
+
+/*
+   .container {
+    max-width: 20rem;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.5rem;
+    font-style: italic;
+    margin: auto;
+  }
+  */
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  .heading {
+    font-size: 1.9rem;
+  }
+}
+
+@media only screen and (min-width: 996px) {
+  .container {
+    max-width: 1800px;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .heading {
+    font-size: 2.4rem;
+  }
+}

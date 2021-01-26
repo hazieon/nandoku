@@ -3,11 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-
+import {
+  ChakraProvider,
+  ThemeProvider,
+  theme,
+  ColorModeProvider,
+  CSSReset,
+  extendTheme,
+} from "@chakra-ui/react";
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ChakraProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ChakraProvider>,
   document.getElementById("root")
 );
 

@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  justify-content: center;
+  border: 3px solid red;
+}
+.box {
+  border-radius: 30%;
+  background-color: #fad6ff;
+  margin-bottom: 0.07rem;
+  color: rgb(179, 43, 95);
+  padding: 1.5rem;
+
+  box-shadow: 0px 5px 6px 2px rgba(255, 100, 203, 0.582);
+}
+
+.textBox {
+  /* text-transform: uppercase; */
+  font-size: 3em;
+  text-align: center;
+}
+
+.categoryName {
+  font-size: 2em;
+}
+/*   
+  .thumb:hover {
+    transform: rotate(180deg);
+    transition: transform 2s;
+  }
+  
+  .hand {
+    position: relative;
+    top: 0;
+  }
+  
+  .quiz:hover {
+    opacity: 0;
+    transition: opacity 5s;
+  }
+  
+  .hand:hover {
+    position: relative;
+    top: -100px;
+    transition: top 3s;
+  }
+  .deck:hover {
+    position: relative;
+  } */
+
+/* css for responsive text, box, etc dimensions: */
+@media only screen and (max-width: 499px) {
+  /* .categoryName {
+      font-size: 0.9rem;
+    } */
+
+  .textBox {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  /* .categoryName {
+    font-size: 0.9rem;
+  } */
+
+  .textBox {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* .categoryName {
+    font-size: 1.5rem;
+  } */
+  .box {
+    padding: 2rem;
+  }
+  .textBox {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 996px) {
+  /* .categoryName {
+    font-size: 1.8rem;
+  } */
+  .box {
+    padding: 2.5rem;
+  }
+
+  .textBox {
+    font-size: 1.5rem;
+  }
+}
