@@ -1,6 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Title from "../../components/heading";
+import { useParams } from "react-router-dom";
+import { categories } from "../../components/menu/categories";
 
 // let title = "花";
 // let kanji = [
@@ -62,21 +64,41 @@ function reducer(state, action) {
       return { ...state, kanji: action.value, yomi: action.answer };
   }
 }
-function FlashcardPanel({ kanji, title }) {
+
+function FlashcardPanel({ kanji }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("flashcard");
-  console.log({ kanji, title });
+  const { title } = useParams();
+  const [catData, setCatData] = useState(false);
+  // console.log("flashcard");
+  // console.log({ kanji, title });
+
+  useEffect(() => {
+    setCatData(
+      categories.find((categoryData) => categoryData.title === title).data
+    );
+  }, [catData, title]);
 
   function randomKanji(index) {
-    let randomIndex = Math.floor(Math.random() * kanji.length);
-    console.log({ randomIndex });
-    let randomKanji = kanji(index);
-    console.log({ randomKanji });
-    return randomKanji;
+    let randomIndex = Math.floor(
+      Math.random() * (catData.length - 1 - 0 + 1) + 0
+    );
+    // console.log({ randomIndex });
+    // let randomKanji = kanji(index);
+    // console.log({ randomKanji });
+    // return randomKanji;
+    console.log(catData[randomIndex]);
   }
+
   return (
     <div className={styles.container}>
       <Title text={title}></Title>
+      <button
+        id="our-button-comrade"
+        onClick={randomKanji}
+        style={{ marginRight: "10px" }}
+      >
+        random kanji
+      </button>
       <button
         onClick={() => {
           dispatch({ type: "start", value: randomKanji() });

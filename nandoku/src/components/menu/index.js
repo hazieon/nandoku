@@ -3,7 +3,7 @@ import Title from "../heading";
 import CatPanel from "../catPanel";
 import { categories } from "./categories";
 function Menu() {
-  console.log({ categories });
+  // console.log({ categories });
 
   return (
     <div className={styles.container}>
@@ -16,8 +16,8 @@ function Menu() {
                 className={c.myClass}
                 title={c.title}
                 score={c.score}
-                link={c.link.path}
-                kanji={c.link.data}
+                // link={c.link.path}
+                // kanji={c.link.data}
               />
             </section>
           );
