@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 import Title from "../../components/heading";
 import { useParams } from "react-router-dom";
 import { categories } from "../../components/menu/categories";
+import { Button, Box, Text, Center, VStack } from "@chakra-ui/react";
+const shuffle = require("shuffle-array");
 
 // let title = "花";
 // let kanji = [
@@ -50,18 +52,26 @@ function reducer(state, action) {
   switch (action.type) {
     default:
       throw new Error();
-    //start the game with score at 0 and gen first kanji q
+    //start the game with score at 0 and gen first kanji question
     case "start":
       return {
         ...state,
         game: true,
         score: 0,
-        kanji: action.value,
-        yomi: action.answer,
+        kanjiSet: action.set,
       };
     //next kanji
     case "setKanji":
-      return { ...state, kanji: action.value, yomi: action.answer };
+      return {
+        ...state,
+        kanji: action.kanji,
+        yomikata: action.answer,
+      };
+    case "score":
+      return {
+        ...state,
+        score: state.score + 1,
+      };
   }
 }
 
@@ -69,52 +79,109 @@ function FlashcardPanel({ kanji }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
-  // console.log("flashcard");
-  // console.log({ kanji, title });
+  const [answersOptions, setAnswersOptions] = useState([]);
 
   useEffect(() => {
     setCatData(
       categories.find((categoryData) => categoryData.title === title).data
     );
+    // dispatch({ type: "start", set: catData });
+    console.log({ state }, "loaded ");
   }, [catData, title]);
-
+  console.log({ answersOptions });
   function randomKanji(index) {
     let randomIndex = Math.floor(
       Math.random() * (catData.length - 1 - 0 + 1) + 0
     );
-    // console.log({ randomIndex });
-    // let randomKanji = kanji(index);
-    // console.log({ randomKanji });
-    // return randomKanji;
-    console.log(catData[randomIndex]);
+    const randomKanji = catData[randomIndex];
+    const answersArr = [
+      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        .yomi,
+      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        .yomi,
+      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        .yomi,
+      randomKanji.yomi,
+    ];
+    //shuffle the answers array using an npm package method:
+    shuffle(answersArr);
+    setAnswersOptions(answersArr);
+
+    dispatch({
+      type: "setKanji",
+      kanji: randomKanji.kanji,
+      answer: randomKanji.yomi,
+    });
+    console.log({ state }, "random kanji");
+  }
+
+  //function to handle whether the chosen option was correct - runs on click
+  function handleResults(ans) {
+    if (ans === state.yomikata) {
+      console.log("正解です！");
+      //dispatch method updates the user's score +1 if they are correct
+      dispatch({ type: "score" });
+      console.log(state.score);
+    } else {
+      console.log("ばつ！");
+    }
   }
 
   return (
     <div className={styles.container}>
-      <Title text={title}></Title>
-      <button
-        id="our-button-comrade"
-        onClick={randomKanji}
-        style={{ marginRight: "10px" }}
-      >
-        random kanji
-      </button>
-      <button
+      <div>
+        <Title text={title}></Title>
+      </div>
+      <Button
+        style={{ margin: "10px", borderRadius: "30px", fontSize: "1.7em" }}
         onClick={() => {
-          dispatch({ type: "start", value: randomKanji() });
+          dispatch({ type: "start", set: catData });
+          console.log({ state }, "start");
         }}
       >
         start
-      </button>
-      <button
-        onClick={() => {
-          dispatch({ type: "setKanji", value: randomKanji() });
-        }}
-      >
-        generate
-      </button>
+      </Button>
+      <h2>{state.score}</h2>
+      <div className={styles.flashcard}>
+        <div className={styles.characterStage}>
+          <h1 className={styles.character}>{state.kanji}</h1>
+        </div>
+        {/* {catData.map((k, i) => {
+          return <p>{k.yomi}</p>;
+        })} */}
+
+        {answersOptions.map((ans, i) => {
+          return (
+            <Button
+              onClick={() => {
+                handleResults(ans);
+              }}
+              key={ans}
+            >
+              {ans}
+            </Button>
+          );
+        })}
+
+        <Button
+          style={{ margin: "10px", borderRadius: "30px", fontSize: "1.3em" }}
+          onClick={() => {
+            randomKanji();
+          }}
+        >
+          generate
+        </Button>
+      </div>
     </div>
   );
 }
 
 export default FlashcardPanel;
+
+// {/* <button
+//       id="our-button-comrade"
+//       onClick={randomKanji}
+//       style={{ marginRight: "10px" }}
+//     >
+//       random kanji
+//     </button> */}
