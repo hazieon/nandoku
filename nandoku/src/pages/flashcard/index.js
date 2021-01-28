@@ -41,17 +41,17 @@ const shuffle = require("shuffle-array");
 
 const initialState = {
   game: false,
-  score: 0,
   kanji: "字",
   yomikata: "かんじ",
   kanjiSet: [],
 };
 
 const gameInitialState = {
+  score: 0,
   correct: false,
   incorrect: false,
   roundSet: [], //kanji in here should not be added again as randomKanji.yomi
-  rounds: 0, //up to 10 max (or customise later)
+  rounds: 0, //up to 10 max (or customise later); if rounds <10 'next', else results
   submit: false, //true if data for that q has been submitted - use to disable buttons
 };
 //reducer function to update game state object
@@ -74,22 +74,57 @@ function reducer(state, action) {
         kanji: action.kanji,
         yomikata: action.answer,
       };
+  }
+}
+function gameReducer(state, action) {
+  switch (action.type) {
+    case "start":
+      return {
+        score: 0,
+        correct: false,
+        incorrect: false,
+        roundSet: [],
+        rounds: 0,
+        submit: false,
+      };
     case "score":
       return {
         ...state,
+        correct: true,
+        incorrect: false,
         score: state.score + 1,
       };
+    case "noScore":
+      return {
+        ...state,
+        correct: false,
+        incorrect: true,
+      };
+    case "nextQuestion":
+      return {
+        ...state,
+        correct: false,
+        incorrect: false,
+        rounds: state.rounds + 1,
+        submit: false,
+        //build an array of kanji that have been asked already
+        // !!! need to check this with .includes before setting question
+        // need to call this upon each generation of a randomKanji in func
+        roundSet: [...state.roundSet, action.usedKanji],
+      };
+    default:
+      throw new Error();
   }
 }
 
 function FlashcardPanel({ kanji }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [gameState, gameDispatch] = useReducer(reducer, gameInitialState);
+  const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
   const [answersOptions, setAnswersOptions] = useState([]);
-  const [correct, setCorrect] = useState(false);
-  const [incorrect, setIncorrect] = useState(false);
+  // const [correct, setCorrect] = useState(false);
+  // const [incorrect, setIncorrect] = useState(false);
 
   useEffect(() => {
     setCatData(
@@ -99,6 +134,8 @@ function FlashcardPanel({ kanji }) {
     console.log({ state }, "loaded ");
   }, [catData, title]);
   console.log({ answersOptions });
+
+  //function to generate a random kanji, set the answers array, shuffle and set state
   function randomKanji(index) {
     let randomIndex = Math.floor(
       Math.random() * (catData.length - 1 - 0 + 1) + 0
@@ -132,8 +169,9 @@ function FlashcardPanel({ kanji }) {
     //shuffle the answers array using an npm package method:
     shuffle(answersArr);
     setAnswersOptions(answersArr);
-    setCorrect(false);
-    setIncorrect(false);
+    //dispatch to set states of 'correct' and add to 'used kanji' array to track questions
+    gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+    //dispatch to set the current round's kanji
     dispatch({
       type: "setKanji",
       kanji: randomKanji.kanji,
@@ -150,17 +188,14 @@ function FlashcardPanel({ kanji }) {
   function handleResults(ans, i) {
     if (ans === state.yomikata) {
       console.log("正解です！");
-      //dispatch method updates the user's score +1 if they are correct
-      dispatch({ type: "score" });
       console.log(answersOptions[i], "answer");
-      console.log(state.score);
-      setCorrect(true);
-      setIncorrect(false);
+      console.log(gameState.score);
+      //dispatch method updates the user's score +1 if they are correct
+      gameDispatch({ type: "score" });
       answersOptions[i] = `${answersOptions[i]} ☑`;
     } else {
       console.log("ばつ！");
-      setCorrect(false);
-      setIncorrect(true);
+      gameDispatch({ type: "noScore" });
     }
   }
 
@@ -174,14 +209,13 @@ function FlashcardPanel({ kanji }) {
         onClick={() => {
           randomKanji();
           dispatch({ type: "start", set: catData });
-          setCorrect(false);
-          setIncorrect(false);
+          gameDispatch({ type: "start" });
           console.log({ state }, "start");
         }}
       >
         start
       </Button>
-      <h2>{state.score}</h2>
+      <h2>{gameState.score}</h2>
       <div className={styles.flashcard}>
         <div className={styles.characterStage}>
           <h1 className={styles.character}>{state.kanji}</h1>
@@ -191,7 +225,11 @@ function FlashcardPanel({ kanji }) {
           return (
             <Button
               colorScheme={
-                correct ? "green" : "none" && incorrect ? "red" : "none"
+                gameState.correct
+                  ? "green"
+                  : "none" && gameState.incorrect
+                  ? "red"
+                  : "none"
               }
               onClick={() => {
                 handleResults(ans, i);
@@ -212,6 +250,7 @@ function FlashcardPanel({ kanji }) {
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.3em" }}
           onClick={() => {
             randomKanji();
+            console.log("generate", gameState, state);
           }}
         >
           generate
