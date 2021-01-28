@@ -123,6 +123,10 @@ function FlashcardPanel({ kanji }) {
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
   const [answersOptions, setAnswersOptions] = useState([]);
+  const [randomKanji, setRandomKanji] = useState({
+    kanji: "字",
+    yomi: "かんじ",
+  });
   // const [correct, setCorrect] = useState(false);
   // const [incorrect, setIncorrect] = useState(false);
 
@@ -135,12 +139,43 @@ function FlashcardPanel({ kanji }) {
   }, [catData, title]);
   console.log({ answersOptions });
 
+  // //asynchronous useEffect to call dispatch functions when random kanji is set
+  // useEffect(() => {
+  //   console.log(randomKanji, "random kanji not in set, useEffect ran");
+  //   //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
+  //   gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+  //   //dispatch to set the current round's kanji:
+  //   dispatch({
+  //     type: "setKanji",
+  //     kanji: randomKanji.kanji,
+  //     answer: randomKanji.yomi,
+  //   });
+  // }, [randomKanji]);
+
   //function to generate a random kanji, set the answers array, shuffle and set state
-  function randomKanji(index) {
+  function getRandomKanji() {
     let randomIndex = Math.floor(
       Math.random() * (catData.length - 1 - 0 + 1) + 0
     );
-    const randomKanji = catData[randomIndex];
+
+    //check if the random kanji has been used previously in the current game:
+    if (gameState.roundSet.includes(catData[randomIndex])) {
+      //recursion - restart the random kanji generation if true
+      console.log("duplicate! recursion time!");
+      getRandomKanji();
+    } else {
+      setRandomKanji(catData[randomIndex]);
+      console.log(randomKanji, "random kanji not in set");
+
+      //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
+      gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+      //dispatch to set the current round's kanji:
+      dispatch({
+        type: "setKanji",
+        kanji: randomKanji.kanji,
+        answer: randomKanji.yomi,
+      });
+    }
 
     let answersArr = [randomKanji.yomi];
     while (answersArr.length < 4) {
@@ -169,14 +204,6 @@ function FlashcardPanel({ kanji }) {
     //shuffle the answers array using an npm package method:
     shuffle(answersArr);
     setAnswersOptions(answersArr);
-    //dispatch to set states of 'correct' and add to 'used kanji' array to track questions
-    gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
-    //dispatch to set the current round's kanji
-    dispatch({
-      type: "setKanji",
-      kanji: randomKanji.kanji,
-      answer: randomKanji.yomi,
-    });
     console.log({ state }, "random kanji");
   }
 
@@ -207,7 +234,7 @@ function FlashcardPanel({ kanji }) {
       <Button
         style={{ margin: "10px", borderRadius: "30px", fontSize: "1.7em" }}
         onClick={() => {
-          randomKanji();
+          getRandomKanji();
           dispatch({ type: "start", set: catData });
           gameDispatch({ type: "start" });
           console.log({ state }, "start");
@@ -249,7 +276,7 @@ function FlashcardPanel({ kanji }) {
         <Button
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.3em" }}
           onClick={() => {
-            randomKanji();
+            getRandomKanji();
             console.log("generate", gameState, state);
           }}
         >
