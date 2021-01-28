@@ -47,6 +47,13 @@ const initialState = {
   kanjiSet: [],
 };
 
+const gameInitialState = {
+  correct: false,
+  incorrect: false,
+  roundSet: [], //kanji in here should not be added again as randomKanji.yomi
+  rounds: 0, //up to 10 max (or customise later)
+  submit: false, //true if data for that q has been submitted - use to disable buttons
+};
 //reducer function to update game state object
 function reducer(state, action) {
   switch (action.type) {
@@ -77,10 +84,12 @@ function reducer(state, action) {
 
 function FlashcardPanel({ kanji }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [gameState, gameDispatch] = useReducer(reducer, gameInitialState);
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
   const [answersOptions, setAnswersOptions] = useState([]);
   const [correct, setCorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
 
   useEffect(() => {
     setCatData(
@@ -123,7 +132,8 @@ function FlashcardPanel({ kanji }) {
     //shuffle the answers array using an npm package method:
     shuffle(answersArr);
     setAnswersOptions(answersArr);
-
+    setCorrect(false);
+    setIncorrect(false);
     dispatch({
       type: "setKanji",
       kanji: randomKanji.kanji,
@@ -145,10 +155,12 @@ function FlashcardPanel({ kanji }) {
       console.log(answersOptions[i], "answer");
       console.log(state.score);
       setCorrect(true);
+      setIncorrect(false);
       answersOptions[i] = `${answersOptions[i]} ☑`;
     } else {
       console.log("ばつ！");
       setCorrect(false);
+      setIncorrect(true);
     }
   }
 
@@ -163,6 +175,7 @@ function FlashcardPanel({ kanji }) {
           randomKanji();
           dispatch({ type: "start", set: catData });
           setCorrect(false);
+          setIncorrect(false);
           console.log({ state }, "start");
         }}
       >
@@ -177,6 +190,9 @@ function FlashcardPanel({ kanji }) {
         {answersOptions.map((ans, i) => {
           return (
             <Button
+              colorScheme={
+                correct ? "green" : "none" && incorrect ? "red" : "none"
+              }
               onClick={() => {
                 handleResults(ans, i);
               }}
@@ -186,6 +202,11 @@ function FlashcardPanel({ kanji }) {
             </Button>
           );
         })}
+
+        {/* <Button colorScheme={correct ? "green" : "none"}>{answersOptions[0]}</Button>
+        <Button colorScheme={correct ? "green" : "none"}>{answersOptions[1]}</Button>
+        <Button colorScheme={correct ? "green" : "none"}>{answersOptions[2]}</Button>
+        <Button colorScheme={correct ? "green" : "none"}>{answersOptions[3]}</Button> */}
 
         <Button
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.3em" }}

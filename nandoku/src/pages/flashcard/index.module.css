@@ -43,3 +43,11 @@
   display: flex;
   align-items: center;
 } */
+
+.answerCorrect {
+  background-color: "lightpink";
+}
+
+.answerPending {
+  background-color: "none";
+}
