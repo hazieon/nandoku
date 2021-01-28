@@ -95,15 +95,31 @@ function FlashcardPanel({ kanji }) {
       Math.random() * (catData.length - 1 - 0 + 1) + 0
     );
     const randomKanji = catData[randomIndex];
-    const answersArr = [
-      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        .yomi,
-      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        .yomi,
-      catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        .yomi,
-      randomKanji.yomi,
-    ];
+
+    let answersArr = [randomKanji.yomi];
+    while (answersArr.length < 4) {
+      let randomAnswer =
+        catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+          .yomi;
+      if (answersArr.includes(randomAnswer)) {
+        // console.log("includes");
+        return answersArr;
+      } else {
+        // console.log("no includes");
+        // console.log(answersArr);
+        answersArr.push(randomAnswer);
+      }
+    }
+    console.log({ answersArr }, "answers array without duplicates?");
+    // const answersArr = [
+    //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+    //     .yomi,
+    //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+    //     .yomi,
+    //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+    //     .yomi,
+    //   randomKanji.yomi,
+    // ];
     //shuffle the answers array using an npm package method:
     shuffle(answersArr);
     setAnswersOptions(answersArr);
@@ -132,7 +148,7 @@ function FlashcardPanel({ kanji }) {
       answersOptions[i] = `${answersOptions[i]} ☑`;
     } else {
       console.log("ばつ！");
-      answersOptions[i] = `${answersOptions[i]} x`;
+      setCorrect(false);
     }
   }
 
