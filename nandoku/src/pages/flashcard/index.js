@@ -80,6 +80,7 @@ function FlashcardPanel({ kanji }) {
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
   const [answersOptions, setAnswersOptions] = useState([]);
+  const [correct, setCorrect] = useState(false);
 
   useEffect(() => {
     setCatData(
@@ -116,14 +117,22 @@ function FlashcardPanel({ kanji }) {
   }
 
   //function to handle whether the chosen option was correct - runs on click
-  function handleResults(ans) {
+  //make correct answer button bg colour green, incorrect red
+  //popup 'CORRECT' or 'INCORRECT'
+  //display an x or a check by buttons
+
+  function handleResults(ans, i) {
     if (ans === state.yomikata) {
       console.log("正解です！");
       //dispatch method updates the user's score +1 if they are correct
       dispatch({ type: "score" });
+      console.log(answersOptions[i], "answer");
       console.log(state.score);
+      setCorrect(true);
+      answersOptions[i] = `${answersOptions[i]} ☑`;
     } else {
       console.log("ばつ！");
+      answersOptions[i] = `${answersOptions[i]} x`;
     }
   }
 
@@ -135,7 +144,9 @@ function FlashcardPanel({ kanji }) {
       <Button
         style={{ margin: "10px", borderRadius: "30px", fontSize: "1.7em" }}
         onClick={() => {
+          randomKanji();
           dispatch({ type: "start", set: catData });
+          setCorrect(false);
           console.log({ state }, "start");
         }}
       >
@@ -146,15 +157,12 @@ function FlashcardPanel({ kanji }) {
         <div className={styles.characterStage}>
           <h1 className={styles.character}>{state.kanji}</h1>
         </div>
-        {/* {catData.map((k, i) => {
-          return <p>{k.yomi}</p>;
-        })} */}
 
         {answersOptions.map((ans, i) => {
           return (
             <Button
               onClick={() => {
-                handleResults(ans);
+                handleResults(ans, i);
               }}
               key={ans}
             >
