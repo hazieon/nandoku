@@ -19,6 +19,19 @@ const flowers = [
   { kanji: "萩", yomi: "はぎ" },
   { kanji: "向日葵", yomi: "ひまわり" },
   { kanji: "撫子", yomi: "なでしこ" },
+  { kanji: "馬酔木", yomi: "あせび" },
+  { kanji: "虎杖", yomi: "いたどり" },
+  { kanji: "桐", yomi: "きり" },
+  { kanji: "水仙", yomi: "すいせん" },
+  { kanji: "石楠花", yomi: "しゃくなげ" },
+  { kanji: "杜鵑花", yomi: "さつき" },
+  { kanji: "敦盛草", yomi: "あつもりそう" },
+  { kanji: "梓", yomi: "あずさ" },
+  { kanji: "紫羅欄花", yomi: "あらせいとう" },
+  { kanji: "槐", yomi: "えんじゅ" },
+  { kanji: "朮", yomi: "おけら" },
+  { kanji: "雛罌粟", yomi: "ひなげし" },
+  { kanji: "彼岸花", yomi: "ひがんばな" },
 ];
 
 export { flowers };

@@ -1,4 +1,5 @@
 import { flowers } from "./flowers";
+import { birds } from "./birds";
 
 const categories = [
   {
@@ -8,7 +9,7 @@ const categories = [
     score: 0,
   },
   {
-    data: flowers,
+    data: birds,
     title: "鳥類",
     myClass: "cat birds",
     score: 0,

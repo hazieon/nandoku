@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect, useState } from "react";
 import styles from "./index.module.css";
+import { Link } from "react-router-dom";
 import Title from "../../components/heading";
 import { useParams } from "react-router-dom";
 import { categories } from "../../components/menu/categories";
@@ -73,6 +74,13 @@ function reducer(state, action) {
         ...state,
         kanji: action.kanji,
         yomikata: action.answer,
+      };
+    case "gameOver":
+      return {
+        ...state,
+        game: false,
+        kanji: "字",
+        yomikata: "かんじ",
       };
   }
 }
@@ -188,6 +196,7 @@ function FlashcardPanel({ kanji }) {
       }
     } else {
       console.log("game over!", "score:", gameState.score, gameState.roundSet);
+      dispatch({ type: "gameOver" });
       return;
     }
   }
@@ -214,6 +223,10 @@ function FlashcardPanel({ kanji }) {
 
   return (
     <div className={styles.container}>
+      <Link className={styles.link} to={"/"}>
+        ⇦
+      </Link>
+
       {/* <div>
         <Title text={title}></Title>
       </div> */}
@@ -283,11 +296,14 @@ function FlashcardPanel({ kanji }) {
         </div>
 
         <Button
+          display={state.game ? true : "none"}
           disabled={gameState.rounds >= 10 ? true : false}
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
           onClick={() => {
             getRandomKanji();
-            console.log("generate", gameState, state);
+            if (state.game === false) {
+              dispatch({ type: "start", set: catData });
+            }
           }}
         >
           {gameState.correct || gameState.incorrect ? "次" : "submit"}
