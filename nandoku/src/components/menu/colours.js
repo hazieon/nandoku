@@ -1,0 +1,32 @@
+const colours = [
+  { kanji: "茜", yomi: "あかね" },
+  { kanji: "蘇芳", yomi: "すおう" },
+  { kanji: "臙脂", yomi: "えんじ" },
+  { kanji: "朱華", yomi: "はねず" },
+  { kanji: "杜若", yomi: "かきつばた" },
+  { kanji: "褐色", yomi: "かっしょく" },
+  { kanji: "銀", yomi: "ぎん" },
+  { kanji: "橙色", yomi: "だいだいいろ" },
+  { kanji: "芥子", yomi: "からし" },
+  { kanji: "珊瑚", yomi: "さんご" },
+  { kanji: "曙", yomi: "あけぼの" },
+  { kanji: "淡香", yomi: "うすこう" },
+  { kanji: "常盤色", yomi: "ときわいろ" },
+  { kanji: "藍", yomi: "あい" },
+  { kanji: "群青", yomi: "ぐんじょう" },
+  { kanji: "縹", yomi: "はなだ" },
+  { kanji: "納戸", yomi: "なんど" },
+  { kanji: "琥珀", yomi: "こはく" },
+  { kanji: "萌黄", yomi: "もえぎ" },
+  { kanji: "海松色", yomi: "みるいろ" },
+  { kanji: "紺鼠", yomi: "こんねず" },
+  { kanji: "鈍色", yomi: "にびいろ" },
+  { kanji: "灰汁色", yomi: "あくいろ" },
+  { kanji: "承和色", yomi: "そがいろ" },
+  { kanji: "退紅", yomi: "あらぞめ" },
+  { kanji: "深緋", yomi: "こきあけ" },
+];
+
+export { colours };
+
+// { kanji: "", yomi: "" },

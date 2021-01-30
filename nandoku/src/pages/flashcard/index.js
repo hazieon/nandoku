@@ -228,7 +228,7 @@ function FlashcardPanel({ kanji }) {
       </Link>
 
       <div>
-        <Title text={gameState.rounds >= 10 ? "Retry?" : title}></Title>
+        <Title text={gameState.rounds >= 10 ? "Game Over?" : title}></Title>
       </div>
 
       <h2 className={styles.score}>{gameState.score}</h2>
@@ -299,7 +299,7 @@ function FlashcardPanel({ kanji }) {
             ? gameState.correct || gameState.incorrect
               ? "次"
               : "submit"
-            : "start"}
+            : "スタート"}
         </Button>
       </div>
     </div>

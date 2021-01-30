@@ -32,6 +32,9 @@ const flowers = [
   { kanji: "朮", yomi: "おけら" },
   { kanji: "雛罌粟", yomi: "ひなげし" },
   { kanji: "彼岸花", yomi: "ひがんばな" },
+  { kanji: "木槿", yomi: "むくげ" },
+  { kanji: "燕子花", yomi: "かきつばた" },
+  { kanji: "亜麻", yomi: "あま" },
 ];
 
 export { flowers };

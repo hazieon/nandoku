@@ -1,6 +1,9 @@
 import { flowers } from "./flowers";
 import { birds } from "./birds";
-
+import { insects } from "./insects";
+import { colours } from "./colours";
+import { weather } from "./weather";
+import { general } from "./general";
 const categories = [
   {
     data: flowers,
@@ -15,27 +18,28 @@ const categories = [
     score: 0,
   },
   {
-    data: flowers,
+    data: colours,
     title: "色",
     myClass: "cat colours",
     score: 0,
   },
   {
-    data: flowers,
+    data: weather,
     title: "天気",
     myClass: "cat weather",
     score: 0,
   },
   {
-    data: flowers,
-    title: "国名",
-    myClass: "cat countries",
+    data: insects,
+    title: "昆虫",
+    myClass: "cat insects",
     score: 0,
   },
+
   {
-    data: flowers,
-    title: "魚へん",
-    myClass: "cat fish",
+    data: general,
+    title: "一般",
+    myClass: "cat general",
     score: 0,
   },
 ];
@@ -48,3 +52,6 @@ const categories = [
 //   },
 
 export { categories };
+
+//categories to create:
+//fish/sea creatures 魚類 魚へん, countries, random mix button
