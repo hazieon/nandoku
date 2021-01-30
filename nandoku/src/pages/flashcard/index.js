@@ -181,15 +181,7 @@ function FlashcardPanel({ kanji }) {
           }
         }
         console.log({ answersArr }, "answers array without duplicates");
-        // const answersArr = [
-        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        //     .yomi,
-        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        //     .yomi,
-        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-        //     .yomi,
-        //   randomKanji.yomi,
-        // ];
+
         //shuffle the answers array using an npm package method:
         shuffle(answersArr);
         setAnswersOptions(answersArr);
@@ -235,13 +227,15 @@ function FlashcardPanel({ kanji }) {
       >
         {title}
       </Button>
-      <h2>{gameState.score}</h2>
+      <h2 className={styles.score}>{gameState.score}</h2>
       <div className={styles.flashcard}>
         <div className={styles.characterStage}>
           <h1 className={styles.character}>{state.kanji}</h1>
         </div>
         <h2
-          className={styles.correctMessage}
+          className={
+            gameState.correct ? styles.correctMessage : styles.incorrectMessage
+          }
           hidden={gameState.correct || gameState.incorrect ? false : true}
         >
           {gameState.correct
