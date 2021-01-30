@@ -24,7 +24,8 @@
 }
 
 .flashcard {
-  box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493);
+  /* box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493); */
+  box-shadow: 0px 3px 3px 2px rgb(231, 161, 231);
   border-radius: 33px;
   min-height: 60vh;
   width: 70%;
@@ -35,19 +36,33 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
+  background-color: rgba(242, 211, 251, 0.972);
 }
-/* 
-.buttons {
-  margin: 10px;
-  width: 50px;
+
+.responsesContainer {
   display: flex;
-  align-items: center;
-} */
-
-.answerCorrect {
-  background-color: "lightpink";
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 5px;
 }
 
-.answerPending {
-  background-color: "none";
+.answerButton {
+  color: black;
+  box-shadow: 0px 1px 3px 3px rgb(231, 161, 231);
+  margin: 4px;
+}
+.answerButton:hover {
+  color: black;
+  box-shadow: 0px 3px 4px 4px rgb(229, 130, 238);
+  background-color: rgba(243, 233, 255, 0.972);
+
+  margin: 6px;
+}
+.answerButton:focus {
+  border: 2px solid violet;
+  box-shadow: 0px 2px 3px 3px rgb(229, 130, 238);
+}
+.answerButton:disabled {
+  opacity: 90%;
+  margin: 4px;
 }
