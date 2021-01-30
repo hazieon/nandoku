@@ -227,20 +227,10 @@ function FlashcardPanel({ kanji }) {
         ⇦
       </Link>
 
-      {/* <div>
-        <Title text={title}></Title>
-      </div> */}
-      <Button
-        style={{ margin: "15px", borderRadius: "30px", fontSize: "3rem" }}
-        onClick={() => {
-          getRandomKanji();
-          dispatch({ type: "start", set: catData });
-          gameDispatch({ type: "start" });
-          console.log({ state }, "start");
-        }}
-      >
-        {gameState.rounds >= 10 ? "Retry?" : title}
-      </Button>
+      <div>
+        <Title text={gameState.rounds >= 10 ? "Retry?" : title}></Title>
+      </div>
+
       <h2 className={styles.score}>{gameState.score}</h2>
       <div className={styles.flashcard}>
         <div className={styles.characterStage}>
@@ -296,7 +286,6 @@ function FlashcardPanel({ kanji }) {
         </div>
 
         <Button
-          display={state.game ? true : "none"}
           disabled={gameState.rounds >= 10 ? true : false}
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
           onClick={() => {
@@ -306,7 +295,11 @@ function FlashcardPanel({ kanji }) {
             }
           }}
         >
-          {gameState.correct || gameState.incorrect ? "次" : "submit"}
+          {state.game
+            ? gameState.correct || gameState.incorrect
+              ? "次"
+              : "submit"
+            : "start"}
         </Button>
       </div>
     </div>
