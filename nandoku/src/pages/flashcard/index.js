@@ -188,6 +188,7 @@ function FlashcardPanel({ kanji }) {
       }
     } else {
       console.log("game over!", "score:", gameState.score, gameState.roundSet);
+      return;
     }
   }
 
@@ -225,7 +226,7 @@ function FlashcardPanel({ kanji }) {
           console.log({ state }, "start");
         }}
       >
-        {title}
+        {gameState.rounds >= 10 ? "Retry?" : title}
       </Button>
       <h2 className={styles.score}>{gameState.score}</h2>
       <div className={styles.flashcard}>
@@ -244,6 +245,13 @@ function FlashcardPanel({ kanji }) {
             ? "ばつ"
             : ""}
         </h2>
+        <h2
+          className={
+            gameState.rounds >= 10 ? styles.gameOver : styles.gameOngoing
+          }
+        >
+          {gameState.rounds >= 10 ? `Score: ${gameState.score * 10}%` : ""}
+        </h2>
         <div className={styles.responsesContainer}>
           {answersOptions.map((ans, i) => {
             return (
@@ -261,9 +269,9 @@ function FlashcardPanel({ kanji }) {
                 }}
                 key={ans}
                 disabled={
-                  gameState.correct
-                    ? true
-                    : false || gameState.incorrect
+                  gameState.correct ||
+                  gameState.incorrect ||
+                  gameState.rounds >= 10
                     ? true
                     : false
                 }
@@ -275,6 +283,7 @@ function FlashcardPanel({ kanji }) {
         </div>
 
         <Button
+          disabled={gameState.rounds >= 10 ? true : false}
           style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
           onClick={() => {
             getRandomKanji();
