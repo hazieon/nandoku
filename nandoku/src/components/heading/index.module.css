@@ -6,16 +6,6 @@
   text-align: center;
 }
 
-/*
-   .container {
-    max-width: 20rem;
-    font-size: 1rem;
-    text-align: center;
-    padding: 0.5rem;
-    font-style: italic;
-    margin: auto;
-  }
-  */
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 1000px;

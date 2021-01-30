@@ -30,7 +30,7 @@
   max-height: min-content;
   text-align: center;
   display: inline;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   border-radius: 30px;
 }
 
