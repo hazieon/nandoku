@@ -176,7 +176,8 @@ function FlashcardPanel({ kanji }) {
           } else {
             // console.log("no includes");
             // console.log(answersArr);
-            answersArr.push(randomAnswer);
+            // answersArr.push(randomAnswer);
+            answersArr = [...answersArr, randomAnswer];
           }
         }
         console.log({ answersArr }, "answers array without duplicates");
