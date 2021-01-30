@@ -240,6 +240,16 @@ function FlashcardPanel({ kanji }) {
         <div className={styles.characterStage}>
           <h1 className={styles.character}>{state.kanji}</h1>
         </div>
+        <h2
+          className={styles.correctMessage}
+          hidden={gameState.correct || gameState.incorrect ? false : true}
+        >
+          {gameState.correct
+            ? "正解!"
+            : "" || gameState.incorrect
+            ? "ばつ"
+            : ""}
+        </h2>
         <div className={styles.responsesContainer}>
           {answersOptions.map((ans, i) => {
             return (

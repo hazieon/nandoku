@@ -50,20 +50,33 @@
 .answerButton {
   font-size: 2em;
   color: black;
-  box-shadow: 0px 1px 3px 3px rgb(231, 161, 231);
+  box-shadow: 0px 1px 3px 2px rgb(231, 161, 231);
   margin: 4px;
 }
 .answerButton:hover {
   color: black;
-  box-shadow: 0px 3px 4px 4px rgb(229, 130, 238);
+  box-shadow: 0px 3px 6px 3px rgb(229, 130, 238);
   background-color: rgba(243, 233, 255, 0.972);
   margin: 6px;
 }
 .answerButton:focus {
   border: 2px solid violet;
-  box-shadow: 0px 2px 3px 3px rgb(229, 130, 238);
+  box-shadow: 0px 2px 4px 3px rgb(229, 130, 238);
 }
 .answerButton:disabled {
   opacity: 90%;
   margin: 4px;
+}
+
+.correctMessage {
+  background-color: rgb(243, 233, 255);
+  box-shadow: 0px 4px 6px 4px rgb(231, 161, 231);
+  border: 1px solid black;
+  color: black;
+  font-size: 15vw;
+  border-radius: 30px;
+  padding: 4px;
+  position: absolute;
+  z-index: 1;
+  margin: auto;
 }
