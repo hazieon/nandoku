@@ -52,7 +52,7 @@ const gameInitialState = {
   incorrect: false,
   roundSet: [], //kanji in here should not be added again as randomKanji.yomi
   rounds: 0, //up to 10 max (or customise later); if rounds <10 'next', else results
-  submit: false, //true if data for that q has been submitted - use to disable buttons
+  // submit: false, //true if data for that q has been submitted - use to disable buttons
 };
 //reducer function to update game state object
 function reducer(state, action) {
@@ -134,62 +134,67 @@ function FlashcardPanel({ kanji }) {
 
   //function to generate a random kanji, set the answers array, shuffle and set state
   function getRandomKanji() {
-    let randomKanji;
-    let randomIndex = Math.floor(
-      Math.random() * (catData.length - 1 - 0 + 1) + 0
-    );
-    console.log(state, "state");
-    console.log(gameState, "game state");
-    //check if the random kanji has been used previously in the current game:
-    if (gameState.roundSet.includes(catData[randomIndex])) {
-      //recursion - restart the random kanji generation if true
-      console.log("duplicate! recursion time!");
-      getRandomKanji();
-    } else {
-      // setRandomKanji(catData[randomIndex]);
-      randomKanji = catData[randomIndex];
-      console.log(randomKanji, "random kanji not in set");
+    if (gameState.rounds < 10) {
+      let randomKanji;
+      let randomIndex = Math.floor(
+        Math.random() * (catData.length - 1 - 0 + 1) + 0
+      );
+      console.log(state, "state");
+      console.log(gameState, "game state");
+      //check if the random kanji has been used previously in the current game:
+      if (gameState.roundSet.includes(catData[randomIndex])) {
+        //recursion - restart the random kanji generation if true
+        console.log("duplicate! recursion time!");
+        getRandomKanji();
+      } else {
+        // setRandomKanji(catData[randomIndex]);
+        randomKanji = catData[randomIndex];
+        console.log(randomKanji, "random kanji not in set");
 
-      //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
-      gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
-      //dispatch to set the current round's kanji:
-      dispatch({
-        type: "setKanji",
-        kanji: randomKanji.kanji,
-        answer: randomKanji.yomi,
-      });
-    }
-    getAnswersOptions();
-
-    function getAnswersOptions() {
-      let answersArr = [randomKanji.yomi];
-      while (answersArr.length < 4) {
-        let randomAnswer =
-          catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-            .yomi;
-        if (answersArr.includes(randomAnswer)) {
-          console.log("includes");
-          //recursion if already included: avoids duplicates & regenerates answers arr
-          getAnswersOptions();
-        } else {
-          // console.log("no includes");
-          // console.log(answersArr);
-          answersArr.push(randomAnswer);
-        }
+        //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
+        gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+        //dispatch to set the current round's kanji:
+        dispatch({
+          type: "setKanji",
+          kanji: randomKanji.kanji,
+          answer: randomKanji.yomi,
+        });
       }
-      console.log({ answersArr }, "answers array without duplicates");
-      // const answersArr = [
-      //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-      //     .yomi,
-      //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-      //     .yomi,
-      //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
-      //     .yomi,
-      //   randomKanji.yomi,
-      // ];
-      //shuffle the answers array using an npm package method:
-      shuffle(answersArr);
-      setAnswersOptions(answersArr);
+      getAnswersOptions();
+
+      function getAnswersOptions() {
+        let answersArr = [randomKanji.yomi];
+        while (answersArr.length < 4) {
+          let randomAnswer =
+            catData[
+              Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
+            ].yomi;
+          if (answersArr.includes(randomAnswer)) {
+            console.log("includes");
+            //recursion if already included: avoids duplicates & regenerates answers arr
+            getAnswersOptions();
+          } else {
+            // console.log("no includes");
+            // console.log(answersArr);
+            answersArr.push(randomAnswer);
+          }
+        }
+        console.log({ answersArr }, "answers array without duplicates");
+        // const answersArr = [
+        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        //     .yomi,
+        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        //     .yomi,
+        //   catData[Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)]
+        //     .yomi,
+        //   randomKanji.yomi,
+        // ];
+        //shuffle the answers array using an npm package method:
+        shuffle(answersArr);
+        setAnswersOptions(answersArr);
+      }
+    } else {
+      console.log("game over!", "score:", gameState.score, gameState.roundSet);
     }
   }
 
@@ -215,11 +220,11 @@ function FlashcardPanel({ kanji }) {
 
   return (
     <div className={styles.container}>
-      <div>
+      {/* <div>
         <Title text={title}></Title>
-      </div>
+      </div> */}
       <Button
-        style={{ margin: "10px", borderRadius: "30px", fontSize: "1.7em" }}
+        style={{ margin: "15px", borderRadius: "30px", fontSize: "3rem" }}
         onClick={() => {
           getRandomKanji();
           dispatch({ type: "start", set: catData });
@@ -227,7 +232,7 @@ function FlashcardPanel({ kanji }) {
           console.log({ state }, "start");
         }}
       >
-        start
+        {title}
       </Button>
       <h2>{gameState.score}</h2>
       <div className={styles.flashcard}>
@@ -265,13 +270,13 @@ function FlashcardPanel({ kanji }) {
         </div>
 
         <Button
-          style={{ margin: "10px", borderRadius: "30px", fontSize: "1.3em" }}
+          style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
           onClick={() => {
             getRandomKanji();
             console.log("generate", gameState, state);
           }}
         >
-          generate
+          {gameState.correct || gameState.incorrect ? "次" : "submit"}
         </Button>
       </div>
     </div>

@@ -11,14 +11,14 @@
   background-color: rgba(227, 203, 255, 0.972);
 }
 .character {
-  font-size: 4.7em;
+  font-size: 13vw;
   letter-spacing: 0.07em;
 }
 
 .characterStage {
+  max-height: min-content;
   text-align: center;
-  display: flex;
-  flex-direction: row;
+  display: inline;
   border: 1px solid blue;
   border-radius: 30px;
 }
@@ -40,6 +40,7 @@
 }
 
 .responsesContainer {
+  font-size: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -47,6 +48,7 @@
 }
 
 .answerButton {
+  font-size: 2em;
   color: black;
   box-shadow: 0px 1px 3px 3px rgb(231, 161, 231);
   margin: 4px;
@@ -55,7 +57,6 @@
   color: black;
   box-shadow: 0px 3px 4px 4px rgb(229, 130, 238);
   background-color: rgba(243, 233, 255, 0.972);
-
   margin: 6px;
 }
 .answerButton:focus {
