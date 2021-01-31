@@ -73,10 +73,12 @@
   background-color: rgba(243, 233, 255, 0.972);
 }
 .answerButton:focus {
+  color: black;
   border: 2px solid violet;
   box-shadow: 0px 2px 4px 3px rgb(229, 130, 238);
 }
 .answerButton:disabled {
+  color: black;
   opacity: 90%;
   margin: 4px;
 }
