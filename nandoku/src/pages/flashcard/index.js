@@ -172,7 +172,7 @@ function FlashcardPanel({ kanji }) {
 
       function getAnswersOptions() {
         let answersArr = [randomKanji.yomi];
-        while (answersArr.length < 4) {
+        while (answersArr.length < 5) {
           let randomAnswer =
             catData[
               Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
@@ -231,9 +231,7 @@ function FlashcardPanel({ kanji }) {
       <div className={styles.container}>
         <div>
           <Title
-            text={
-              gameState.rounds > 10 ? "🌸 Game Over 🌸" : "🌸 " + title + " 🌸"
-            }
+            text={gameState.rounds > 10 ? "🌸 終了 🌸" : "🌸 " + title + " 🌸"}
           ></Title>
         </div>
 
@@ -305,9 +303,9 @@ function FlashcardPanel({ kanji }) {
           >
             {state.game
               ? gameState.correct || gameState.incorrect
-                ? "次"
-                : "submit"
-              : "スタート"}
+                ? "次へ"
+                : "スキップ"
+              : "開始"}
           </Button>
         </div>
       </div>
