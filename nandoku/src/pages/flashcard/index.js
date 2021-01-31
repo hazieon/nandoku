@@ -230,7 +230,11 @@ function FlashcardPanel({ kanji }) {
       </div>
       <div className={styles.container}>
         <div>
-          <Title text={gameState.rounds > 10 ? "Game Over?" : title}></Title>
+          <Title
+            text={
+              gameState.rounds > 10 ? "🌸 Game Over 🌸" : "🌸 " + title + " 🌸"
+            }
+          ></Title>
         </div>
 
         <h2 className={styles.score}>{gameState.score}</h2>

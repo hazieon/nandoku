@@ -7,7 +7,7 @@ function Menu() {
 
   return (
     <div className={styles.container}>
-      <Title text="ナンドク"></Title>
+      <Title text="🌸 ナンドク 🌸"></Title>
       <div className={styles.panel}>
         {categories.map((c, i) => {
           return (
