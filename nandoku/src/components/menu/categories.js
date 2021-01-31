@@ -6,6 +6,12 @@ import { weather } from "./weather";
 import { general } from "./general";
 const categories = [
   {
+    data: general,
+    title: "一般",
+    myClass: "cat general",
+    score: 0,
+  },
+  {
     data: flowers,
     title: "花",
     myClass: "cat flowers",
@@ -33,13 +39,6 @@ const categories = [
     data: insects,
     title: "昆虫",
     myClass: "cat insects",
-    score: 0,
-  },
-
-  {
-    data: general,
-    title: "一般",
-    myClass: "cat general",
     score: 0,
   },
 ];

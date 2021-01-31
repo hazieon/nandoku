@@ -142,7 +142,7 @@ function FlashcardPanel({ kanji }) {
 
   //function to generate a random kanji, set the answers array, shuffle and set state
   function getRandomKanji() {
-    if (gameState.rounds < 10) {
+    if (gameState.rounds <= 10) {
       let randomKanji;
       let randomIndex = Math.floor(
         Math.random() * (catData.length - 1 - 0 + 1) + 0
@@ -222,87 +222,92 @@ function FlashcardPanel({ kanji }) {
   }
 
   return (
-    <div className={styles.container}>
-      <Link className={styles.link} to={"/"}>
-        ⇦
-      </Link>
-
-      <div>
-        <Title text={gameState.rounds >= 10 ? "Game Over?" : title}></Title>
+    <>
+      <div className={styles.backLink}>
+        <Link className={styles.link} to={"/"}>
+          ⇦
+        </Link>
       </div>
-
-      <h2 className={styles.score}>{gameState.score}</h2>
-      <div className={styles.flashcard}>
-        <div className={styles.characterStage}>
-          <h1 className={styles.character}>{state.kanji}</h1>
-        </div>
-        <h2
-          className={
-            gameState.correct ? styles.correctMessage : styles.incorrectMessage
-          }
-          hidden={gameState.correct || gameState.incorrect ? false : true}
-        >
-          {gameState.correct
-            ? "正解!"
-            : "" || gameState.incorrect
-            ? "ばつ"
-            : ""}
-        </h2>
-        <h2
-          className={
-            gameState.rounds >= 10 ? styles.gameOver : styles.gameOngoing
-          }
-        >
-          {gameState.rounds >= 10 ? `Score: ${gameState.score * 10}%` : ""}
-        </h2>
-        <div className={styles.responsesContainer}>
-          {answersOptions.map((ans, i) => {
-            return (
-              <Button
-                className={styles.answerButton}
-                colorScheme={
-                  gameState.correct
-                    ? "green"
-                    : "none" && gameState.incorrect
-                    ? "red"
-                    : "none"
-                }
-                onClick={() => {
-                  handleResults(ans, i);
-                }}
-                key={ans}
-                disabled={
-                  gameState.correct ||
-                  gameState.incorrect ||
-                  gameState.rounds >= 10
-                    ? true
-                    : false
-                }
-              >
-                {ans}
-              </Button>
-            );
-          })}
+      <div className={styles.container}>
+        <div>
+          <Title text={gameState.rounds > 10 ? "Game Over?" : title}></Title>
         </div>
 
-        <Button
-          disabled={gameState.rounds >= 10 ? true : false}
-          style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
-          onClick={() => {
-            getRandomKanji();
-            if (state.game === false) {
-              dispatch({ type: "start", set: catData });
+        <h2 className={styles.score}>{gameState.score}</h2>
+        <div className={styles.flashcard}>
+          <div className={styles.characterStage}>
+            <h1 className={styles.character}>{state.kanji}</h1>
+          </div>
+          <h2
+            className={
+              gameState.correct
+                ? styles.correctMessage
+                : styles.incorrectMessage
             }
-          }}
-        >
-          {state.game
-            ? gameState.correct || gameState.incorrect
-              ? "次"
-              : "submit"
-            : "スタート"}
-        </Button>
+            hidden={gameState.correct || gameState.incorrect ? false : true}
+          >
+            {gameState.correct
+              ? "正解!"
+              : "" || gameState.incorrect
+              ? "ばつ"
+              : ""}
+          </h2>
+          <h2
+            className={
+              gameState.rounds > 10 ? styles.gameOver : styles.gameOngoing
+            }
+          >
+            {gameState.rounds > 10 ? `Score: ${gameState.score * 10}%` : ""}
+          </h2>
+          <div className={styles.responsesContainer}>
+            {answersOptions.map((ans, i) => {
+              return (
+                <Button
+                  className={styles.answerButton}
+                  colorScheme={
+                    gameState.correct
+                      ? "green"
+                      : "none" && gameState.incorrect
+                      ? "red"
+                      : "none"
+                  }
+                  onClick={() => {
+                    handleResults(ans, i);
+                  }}
+                  key={ans}
+                  disabled={
+                    gameState.correct ||
+                    gameState.incorrect ||
+                    gameState.rounds > 10
+                      ? true
+                      : false
+                  }
+                >
+                  {ans}
+                </Button>
+              );
+            })}
+          </div>
+
+          <Button
+            disabled={gameState.rounds > 10 ? true : false}
+            style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
+            onClick={() => {
+              getRandomKanji();
+              if (state.game === false) {
+                dispatch({ type: "start", set: catData });
+              }
+            }}
+          >
+            {state.game
+              ? gameState.correct || gameState.incorrect
+                ? "次"
+                : "submit"
+              : "スタート"}
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
