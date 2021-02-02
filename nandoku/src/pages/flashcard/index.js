@@ -53,7 +53,7 @@ const gameInitialState = {
   incorrect: false,
   roundSet: [], //kanji in here should not be added again as randomKanji.yomi
   rounds: 0, //up to 10 max (or customise later); if rounds <10 'next', else results
-  // submit: false, //true if data for that q has been submitted - use to disable buttons
+  submit: false, //true if data for that q has been submitted - use to disable buttons
 };
 //reducer function to update game state object
 function reducer(state, action) {
@@ -119,6 +119,11 @@ function gameReducer(state, action) {
         // !!! need to check this with .includes before setting question
         // need to call this upon each generation of a randomKanji in func
         roundSet: [...state.roundSet, action.usedKanji],
+      };
+    case "select":
+      return {
+        ...state,
+        submit: true,
       };
     default:
       throw new Error();
@@ -274,6 +279,7 @@ function FlashcardPanel({ kanji }) {
                       : "none"
                   }
                   onClick={() => {
+                    gameDispatch({ type: "select" });
                     handleResults(ans, i);
                   }}
                   key={ans}
@@ -293,7 +299,13 @@ function FlashcardPanel({ kanji }) {
 
           <Button
             disabled={gameState.rounds > 10 ? true : false}
-            style={{ margin: "10px", borderRadius: "30px", fontSize: "1.2em" }}
+            display={gameState.submit ? true : "none"}
+            style={{
+              border: "1px solid violet",
+              margin: "10px",
+              borderRadius: "30px",
+              fontSize: "1.2em",
+            }}
             onClick={() => {
               getRandomKanji();
               if (state.game === false) {
@@ -301,11 +313,24 @@ function FlashcardPanel({ kanji }) {
               }
             }}
           >
-            {state.game
-              ? gameState.correct || gameState.incorrect
-                ? "次へ"
-                : "スキップ"
-              : "開始"}
+            {gameState.correct || gameState.incorrect ? "次へ" : "スキップ"}
+          </Button>
+          <Button
+            style={{
+              border: "1px solid violet",
+              margin: "10px",
+              borderRadius: "30px",
+              fontSize: "1.2em",
+            }}
+            display={state.game ? "none" : true}
+            onClick={() => {
+              getRandomKanji();
+              if (state.game === false) {
+                dispatch({ type: "start", set: catData });
+              }
+            }}
+          >
+            {state.game ? "" : "開始"}
           </Button>
         </div>
       </div>

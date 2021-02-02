@@ -15,7 +15,7 @@ function Menu() {
               <CatPanel
                 className={c.myClass}
                 title={c.title}
-                score={c.score}
+                // score={c.score}
                 // link={c.link.path}
                 // kanji={c.link.data}
               />
