@@ -48,6 +48,7 @@ const shuffle = require("shuffle-array");
 
 const initialState = {
   game: false,
+  rounds: 10, //up to 10 max (or customise later); if rounds <10 'next', else results
   kanji: "字",
   yomikata: "かんじ",
   kanjiSet: [],
@@ -58,7 +59,6 @@ const gameInitialState = {
   correct: false,
   incorrect: false,
   roundSet: [], //kanji in here should not be added again as randomKanji.yomi
-  rounds: 0, //up to 10 max (or customise later); if rounds <10 'next', else results
   submit: false, //true if data for that q has been submitted - use to disable buttons
 };
 //reducer function to update game state object
@@ -71,7 +71,7 @@ function reducer(state, action) {
       return {
         ...state,
         game: true,
-        score: 0,
+        rounds: action.rounds,
         kanjiSet: action.set,
       };
     //next kanji
@@ -98,7 +98,6 @@ function gameReducer(state, action) {
         correct: false,
         incorrect: false,
         roundSet: [],
-        rounds: 0,
         submit: false,
       };
     case "score":
@@ -119,7 +118,6 @@ function gameReducer(state, action) {
         ...state,
         correct: false,
         incorrect: false,
-        rounds: state.rounds + 1,
         submit: false,
         //build an array of kanji that have been asked already
         // !!! need to check this with .includes before setting question
@@ -154,7 +152,7 @@ function FlashcardPanel({ kanji }) {
 
   //function to generate a random kanji, set the answers array, shuffle and set state
   function getRandomKanji() {
-    if (gameState.rounds <= 10) {
+    if (rounds > 0) {
       let randomKanji;
       let randomIndex = Math.floor(
         Math.random() * (catData.length - 1 - 0 + 1) + 0
@@ -245,7 +243,7 @@ function FlashcardPanel({ kanji }) {
       <div className={styles.container}>
         <div>
           <Title
-            text={gameState.rounds > 10 ? "🌸 終了 🌸" : "🌸 " + title + " 🌸"}
+            text={rounds === 0 ? "🌸 終了 🌸" : "🌸 " + title + " 🌸"}
           ></Title>
         </div>
 
@@ -268,12 +266,10 @@ function FlashcardPanel({ kanji }) {
               ? "ばつ"
               : ""}
           </h2>
-          <h2
-            className={
-              gameState.rounds > 10 ? styles.gameOver : styles.gameOngoing
-            }
-          >
-            {gameState.rounds > 10 ? `Score: ${gameState.score * 10}%` : ""}
+          <h2 className={rounds === 0 ? styles.gameOver : styles.gameOngoing}>
+            {rounds === 0
+              ? `Score: ${(gameState.score / state.rounds) * 100}%`
+              : ""}
           </h2>
           <div className={styles.responsesContainer}>
             {answersOptions.map((ans, i) => {
@@ -293,9 +289,7 @@ function FlashcardPanel({ kanji }) {
                   }}
                   key={ans}
                   disabled={
-                    gameState.correct ||
-                    gameState.incorrect ||
-                    gameState.rounds > 10
+                    gameState.correct || gameState.incorrect || rounds === 0
                       ? true
                       : false
                   }
@@ -307,7 +301,7 @@ function FlashcardPanel({ kanji }) {
           </div>
 
           <Button
-            disabled={gameState.rounds > 10 ? true : false}
+            disabled={rounds === 0 ? true : false}
             display={gameState.submit ? true : "none"}
             style={{
               border: "1px solid violet",
@@ -317,8 +311,9 @@ function FlashcardPanel({ kanji }) {
             }}
             onClick={() => {
               getRandomKanji();
+              setRounds(rounds - 1);
               if (state.game === false) {
-                dispatch({ type: "start", set: catData });
+                dispatch({ type: "start", set: catData, rounds: rounds });
               }
             }}
           >
@@ -328,9 +323,11 @@ function FlashcardPanel({ kanji }) {
           <Select
             placeholder="Rounds:"
             variant="outline"
-            borderColor="pink"
+            borderColor="violet"
+            color="black"
             isFullWidth="false"
-            width="30%"
+            width="30vw"
+            display={state.game ? "none" : true}
           >
             <option
               value="10"
@@ -369,7 +366,7 @@ function FlashcardPanel({ kanji }) {
             onClick={() => {
               getRandomKanji();
               if (state.game === false) {
-                dispatch({ type: "start", set: catData });
+                dispatch({ type: "start", set: catData, rounds: rounds });
               }
             }}
           >
