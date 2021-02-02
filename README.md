@@ -7,23 +7,23 @@ The characters are difficult for native speakers, not found in the 'regularly us
 
 
 # How To Play
-### visit https://nandoku.netlify.app/ 
+## visit https://nandoku.netlify.app/ 
 (or clone the repo, install the dependencies with npm i and run in the browser with npm start)
 
-### Choose a category from the menu page.
+## 1. Choose a category from the menu page.
 
-### set a number of rounds from the drop down list (10, 20 or 50)
+## 2. set a number of rounds from the drop down list (10, 20 or 50)
 
-### click start '開始' to begin the game.
+## 3. click start '開始' to begin the game.
 
-### Look at the kanji, then try to choose the correct hiragana reading from the multiple choice options.
+## 4. Look at the kanji, then try to choose the correct hiragana reading from the multiple choice options.
 
-### Click the option you think is correct and see the result. 
+## 5. Click the option you think is correct and see the result. 
 Click 次 to move to the next question. View your score throughout at the top of the page.
 
-### Your percentage score is shown on Game Over (when the number of set rounds is complete)
+## 6. Your percentage score is shown on Game Over (when the number of set rounds is complete)
 
-### Return to the menu page at any time using the back arrow in the upper left.
+## 7. Return to the menu page at any time using the back arrow in the upper left.
 
 
 
