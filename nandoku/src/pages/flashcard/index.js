@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import Title from "../../components/heading";
 import { useParams } from "react-router-dom";
 import { categories } from "../../components/menu/categories";
-import { Button, Box, Text, Center, VStack } from "@chakra-ui/react";
+import { Button, Select, Box, Text, Center, VStack } from "@chakra-ui/react";
+import {
+  MdArrowDropDown,
+  PhoneIcon,
+  AddIcon,
+  WarningIcon,
+} from "@chakra-ui/icons";
 const shuffle = require("shuffle-array");
 
 // let title = "花";
@@ -137,6 +143,7 @@ function FlashcardPanel({ kanji }) {
   const [catData, setCatData] = useState(false);
   const [answersOptions, setAnswersOptions] = useState([]);
   const [correct, setCorrect] = useState(null);
+  const [rounds, setRounds] = useState(10);
 
   useEffect(() => {
     setCatData(
@@ -205,7 +212,9 @@ function FlashcardPanel({ kanji }) {
       return;
     }
   }
-
+  function handleRounds(rounds) {
+    console.log(rounds);
+  }
   //function to handle whether the chosen option was correct - runs on click
   //make correct answer button bg colour green, incorrect red
   //popup 'CORRECT' or 'INCORRECT'
@@ -315,6 +324,40 @@ function FlashcardPanel({ kanji }) {
           >
             {gameState.correct || gameState.incorrect ? "次へ" : "スキップ"}
           </Button>
+
+          <Select
+            placeholder="Rounds:"
+            variant="outline"
+            borderColor="pink"
+            isFullWidth="false"
+            width="30%"
+          >
+            <option
+              value="10"
+              onClick={() => {
+                setRounds(10);
+              }}
+            >
+              10
+            </option>
+            <option
+              value="20"
+              onClick={() => {
+                setRounds(20);
+              }}
+            >
+              20
+            </option>
+            <option
+              value="50"
+              onClick={() => {
+                setRounds(50);
+              }}
+            >
+              50
+            </option>
+          </Select>
+
           <Button
             style={{
               border: "1px solid violet",
