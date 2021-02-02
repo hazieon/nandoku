@@ -57,7 +57,6 @@ const general = [
   { kanji: "提灯", yomi: "ちょうちん" },
   { kanji: "生憎", yomi: "あいにく" },
   { kanji: "羹", yomi: "あつもの" },
-
   { kanji: "所謂", yomi: "いわゆる" },
   { kanji: "蠢", yomi: "うごめ(く)" },
   { kanji: "傀儡", yomi: "かいらい" },

@@ -247,7 +247,9 @@ function FlashcardPanel({ kanji }) {
           ></Title>
         </div>
 
-        <h2 className={styles.score}>{gameState.score}</h2>
+        <h2 className={styles.score}>
+          {gameState.score}/{state.rounds}
+        </h2>
         <div className={styles.flashcard}>
           <div className={styles.characterStage}>
             <h1 className={styles.character}>{state.kanji}</h1>
