@@ -4,26 +4,32 @@
 Playable in a smartphone or PC browser. The game tests the player on their reading knowledge of difficult Japanese kanji characters.
 The characters are difficult for native speakers, not found in the 'regularly used' characters list (常用漢字).
 
+The CSS is temporary, but is based on Japanese cherry blossom 🌸.
 
 
-# How To Play
+# How To Play:
 ## visit https://nandoku.netlify.app/ 
 (or clone the repo, install the dependencies with npm i and run in the browser with npm start)
 
 ## 1. Choose a category from the menu page.
+Choose a category of kanji to be tested on by clicking a panel.
 
-## 2. set a number of rounds from the drop down list (10, 20 or 50)
+## 2. Set a number of rounds from the drop down list 
+(10, 20 or 50)
 
 ## 3. click start '開始' to begin the game.
 
-## 4. Look at the kanji, then try to choose the correct hiragana reading from the multiple choice options.
+## 4. Look at the kanji, then consider the correct hiragana reading from the multiple choice options.
+Look at the response options. Which one is the correct 読み方 reading?
 
 ## 5. Click the option you think is correct and see the result. 
 Click 次 to move to the next question. View your score throughout at the top of the page.
 
-## 6. Your percentage score is shown on Game Over (when the number of set rounds is complete)
+## 6. Your percentage score is shown on Game Over.
+Congratulations! The game ends when the number of set rounds is complete.
 
-## 7. Return to the menu page at any time using the back arrow in the upper left.
+## 7. Return to the menu page at any time using the back arrow.
+Click ⇦ to return to the menu
 
 
 
