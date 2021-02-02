@@ -18,7 +18,7 @@ const insects = [
   { kanji: "蛍", yomi: "ほたる" },
   { kanji: "蝉", yomi: "せみ" },
   { kanji: "蚤", yomi: "のみ" },
-  { kanji: "瓢虫", yomi: "とんとうむし" },
+  { kanji: "瓢虫", yomi: "てんとうむし" },
   { kanji: "蚯蚓", yomi: "みみず" },
   { kanji: "馬陸", yomi: "やすで" },
   { kanji: "蛆", yomi: "うじ" },
