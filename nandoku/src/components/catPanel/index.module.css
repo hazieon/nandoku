@@ -5,15 +5,15 @@
 }
 .box {
   border-radius: 30%;
-  background-color: #fad6ff;
+  background-color: var(--panel-shade);
   margin-bottom: 0.07rem;
-  color: rgb(179, 43, 95);
+  color: var(--light-shade);
   padding: 1.5rem;
-  box-shadow: 0px 5px 6px 2px rgba(255, 100, 203, 0.582);
+  box-shadow: 0px 5px 6px 2px var(--light-shade);
 }
 
 .box:hover {
-  background-color: #f8e0fc;
+  background-color: var(--panel-mid-shade);
 }
 
 .textBox {
