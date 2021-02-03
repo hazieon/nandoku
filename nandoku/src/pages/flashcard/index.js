@@ -204,15 +204,13 @@ function FlashcardPanel({ kanji }) {
         shuffle(answersArr);
         setAnswersOptions(answersArr);
       }
-    } else {
+    } else if (rounds === 0) {
       console.log("game over!", "score:", gameState.score, gameState.roundSet);
       dispatch({ type: "gameOver" });
       return;
     }
   }
-  function handleRounds(rounds) {
-    console.log(rounds);
-  }
+
   //function to handle whether the chosen option was correct - runs on click
   //make correct answer button bg colour green, incorrect red
   //popup 'CORRECT' or 'INCORRECT'
@@ -381,24 +379,3 @@ function FlashcardPanel({ kanji }) {
 }
 
 export default FlashcardPanel;
-
-// //asynchronous useEffect to call dispatch functions when random kanji is set
-// useEffect(() => {
-//   console.log(randomKanji, "random kanji not in set, useEffect ran");
-//   //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
-//   gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
-//   //dispatch to set the current round's kanji:
-//   dispatch({
-//     type: "setKanji",
-//     kanji: randomKanji.kanji,
-//     answer: randomKanji.yomi,
-//   });
-// }, [randomKanji]);
-
-// {/* <button
-//       id="our-button-comrade"
-//       onClick={randomKanji}
-//       style={{ marginRight: "10px" }}
-//     >
-//       random kanji
-//     </button> */}
