@@ -254,7 +254,7 @@ function FlashcardPanel({ kanji }) {
           <div className={styles.characterStage}>
             <h1 className={styles.character}>{state.kanji}</h1>
           </div>
-          <h2
+          <div
             className={
               gameState.correct
                 ? styles.correctMessage
@@ -262,12 +262,9 @@ function FlashcardPanel({ kanji }) {
             }
             hidden={gameState.correct || gameState.incorrect ? false : true}
           >
-            {gameState.correct
-              ? "正解!"
-              : "" || gameState.incorrect
-              ? "ばつ"
-              : ""}
-          </h2>
+            <h2>{gameState.correct ? `正解!` : state.yomikata}</h2>
+          </div>
+
           <h2 className={rounds === 0 ? styles.gameOver : styles.gameOngoing}>
             {rounds === 0
               ? `Score: ${(gameState.score / state.rounds) * 100}%`
@@ -277,6 +274,7 @@ function FlashcardPanel({ kanji }) {
             {answersOptions.map((ans, i) => {
               return (
                 <Button
+                  style={{ color: "black" }}
                   className={styles.answerButton}
                   colorScheme={
                     gameState.correct
@@ -306,6 +304,7 @@ function FlashcardPanel({ kanji }) {
             disabled={rounds === 0 ? true : false}
             display={gameState.submit ? true : "none"}
             style={{
+              color: "black",
               border: "1px solid violet",
               margin: "10px",
               borderRadius: "30px",
@@ -363,6 +362,7 @@ function FlashcardPanel({ kanji }) {
               margin: "10px",
               borderRadius: "30px",
               fontSize: "1.2em",
+              color: "black",
             }}
             display={state.game ? "none" : true}
             onClick={() => {
