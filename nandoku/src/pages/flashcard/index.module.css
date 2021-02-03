@@ -86,20 +86,21 @@
 }
 
 .score {
-  font-size: 1.5rem;
+  font-size: 0.2rem;
 }
 .correctMessage {
   background-color: rgb(243, 233, 255);
   box-shadow: 0px 3px 6px 3px rgb(177, 231, 161);
-  border: 1px solid black;
+  border: 1px solid rgba(32, 32, 32, 0.938);
   color: black;
-  font-size: 15vw;
+  font-size: 13vw;
   border-radius: 30px;
-  padding: 4px;
+  padding: 5px;
   position: absolute;
   user-select: none;
   margin: auto;
   z-index: 1;
+  display: block;
 }
 
 .incorrectMessage {
@@ -108,9 +109,9 @@
   border: 1px solid black;
   color: black;
   user-select: none;
-  font-size: 15vw;
+  font-size: 10vw;
   border-radius: 30px;
-  padding: 4px;
+  padding: 5px;
   position: absolute;
   margin: auto;
   z-index: 1;
@@ -132,5 +133,17 @@
 }
 
 .gameOngoing {
+  display: none;
+}
+
+.startButton {
+  color: black;
+  border: "1px solid violet";
+  margin: "10px";
+  border-radius: "30px";
+  font-size: "1.2em";
+}
+
+.startButtonOff {
   display: none;
 }
