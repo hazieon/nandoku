@@ -303,7 +303,7 @@ function FlashcardPanel({ kanji }) {
             display={gameState.submit ? true : "none"}
             style={{
               color: "black",
-              border: "1px solid violet",
+              border: "1px solid var(--mid-shade)",
               margin: "10px",
               borderRadius: "30px",
               fontSize: "1.2em",
@@ -322,7 +322,7 @@ function FlashcardPanel({ kanji }) {
           <Select
             placeholder="Rounds:"
             variant="outline"
-            borderColor="violet"
+            borderColor="var(--mid-shade)"
             color="black"
             isFullWidth="false"
             width="30vw"
@@ -356,7 +356,7 @@ function FlashcardPanel({ kanji }) {
 
           <Button
             style={{
-              border: "1px solid violet",
+              border: "1px solid var(--mid-shade)",
               margin: "10px",
               borderRadius: "30px",
               fontSize: "1.2em",
