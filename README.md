@@ -4,7 +4,7 @@
 Playable in a smartphone or PC browser. The game tests the player on their reading knowledge of difficult Japanese kanji characters.
 The characters are difficult for native speakers, not found in the 'regularly used' characters list (常用漢字).
 
-The CSS is temporary, but is based on Japanese cherry blossom 🌸.
+The CSS is based on Japanese cherry blossom aesthetic 🌸.
 
 
 # How To Play:
@@ -32,11 +32,14 @@ Congratulations! The game ends when the number of set rounds is complete.
 Click ⇦ to return to the menu
 
 
+### Upcoming features
+I plan to expand the game by: adding user logins, scores that persist, a 'mixed category' feature, possibly audio readings of kanji characters and definitions.
 
 #### More about the game and process 
 I had the idea to build this game for a long time as I saved a list of the characters in my phone dictionary to test friends.
 However, the dictionary list is not sorted into categories, there are no answer choices, a score cannot be shown. 
 It is more of an unorganised flashcard activity than a kanji reading game.
 
-I used React.js with chakra UI to bring in neat, customisable components. It is the first full application I attempted solo since completing the School of Code bootcamp.
-When facing errors, I sought help from fellow bootcampers :) shoutout to them!
+So, I used React.js with chakra UI to bring in neat, customisable components and brought my kanji quiz idea to life. 
+It is the first full application I attempted solo since completing the School of Code bootcamp.
+When facing errors, I sought help from fellow bootcampers :) Big shoutout to them!
