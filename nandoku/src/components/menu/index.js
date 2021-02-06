@@ -2,12 +2,15 @@ import styles from "./index.module.css";
 import Title from "../heading";
 import CatPanel from "../catPanel";
 import { categories } from "./categories";
+import LogoutButton from "../logoutButton";
+
 function Menu() {
   // console.log({ categories });
 
   return (
     <div className={styles.container}>
       <Title text="🌸 ナンドク 🌸"></Title>
+      <LogoutButton />
       <div className={styles.panel}>
         {categories.map((c, i) => {
           return (

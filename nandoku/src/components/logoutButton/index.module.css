@@ -1,0 +1,12 @@
+.logoutArea {
+  position: relative;
+}
+
+.logout {
+  color: var(--mid-shade);
+  font-size: 1em;
+  font-weight: bold;
+  position: absolute;
+  top: -30px;
+  right: 20px;
+}
