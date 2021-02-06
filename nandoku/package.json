@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.2.0",
     "@chakra-ui/icons": "^1.0.4",
     "@chakra-ui/react": "^1.1.6",
     "@emotion/react": "^11.1.4",
@@ -10,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
+    "dotenv": "^8.2.0",
     "framer-motion": "^3.2.2-rc.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
