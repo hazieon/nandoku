@@ -1,0 +1,14 @@
+.profileContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.profileData {
+  position: absolute;
+  top: -25px;
+  right: 4.7em;
+}
+.profilePic {
+  width: 4vw;
+  border-radius: 50px;
+}
