@@ -1,10 +1,11 @@
 import React from "react";
 import LoginButton from "../../components/loginButton";
+import styles from "./index.module.css";
 
 function Login() {
   return (
-    <div>
-      <h1>ナンドクにようこそ</h1>
+    <div className={styles.container}>
+      <h1 className={styles.welcome}>ナンドクにようこそ</h1>
       <LoginButton />
     </div>
   );

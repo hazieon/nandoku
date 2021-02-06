@@ -1,0 +1,10 @@
+.container {
+  padding: 30px;
+  margin: auto;
+  text-align: center;
+}
+
+.welcome {
+  font-size: 5em;
+  margin: auto;
+}

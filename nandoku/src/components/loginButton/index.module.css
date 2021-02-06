@@ -1,0 +1,7 @@
+.login {
+  color: var(--mid-shade);
+  font-size: 3em;
+  font-weight: bold;
+
+  margin: auto;
+}
