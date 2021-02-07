@@ -1,10 +1,30 @@
 .container {
-  padding: 30px;
+  padding: 50px;
   margin: auto;
   text-align: center;
 }
+.welcomeMessage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.appName {
+  font-size: 9vw;
+  font-family: "MS PGothic";
+  user-select: none;
+  color: var(--deep-shade);
+  padding: 3px;
+  text-shadow: 2px 2px 2px var(--mid-shade);
+}
 
 .welcome {
-  font-size: 5em;
-  margin: auto;
+  font-size: 7vw;
+  font-family: "MS PGothic";
+  user-select: none;
+  padding: 3px;
+  text-shadow: 2px 3px 3px var(--deep-shade);
 }
+
+/* font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka,
+    "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; */
