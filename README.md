@@ -9,7 +9,10 @@ The CSS is based on Japanese cherry blossom aesthetic 🌸.
 
 # How To Play:
 ## visit https://nandoku.netlify.app/ 
-(or clone the repo, install the dependencies with npm i and run in the browser with npm start)
+(or clone the repo, install the dependencies with npm i and run in the browser with npm start).
+
+### Login using any gmail account.
+Auth0 service handles user logins. 
 
 ## 1. Choose a category from the menu page.
 Choose a category of kanji to be tested on by clicking a panel.
@@ -24,18 +27,21 @@ Look at the response options. Which one is the correct 読み方 reading?
 
 ## 5. Click the option you think is correct and see the result. 
 Click 次 to move to the next question. View your score throughout at the top of the page.
+If correct, you get a point added to your score.
+If incorrect, the correct answer is shown and the score is unchanged. 
 
 ## 6. Your percentage score is shown on Game Over.
 Congratulations! The game ends when the number of set rounds is complete.
 
-## 7. Return to the menu page at any time using the back arrow.
-Click ⇦ to return to the menu
+## 7. Click ⇦ to return to the menu.
+Return to the menu page at any time using the back arrow.
 
 
 ### Upcoming features
 I plan to expand the game by: adding user logins, scores that persist, a 'mixed category' feature, possibly audio readings of kanji characters and definitions.
 
-#### More about the game and process 
+
+#### About the game
 I had the idea to build this game for a long time as I saved a list of the characters in my phone dictionary to test friends.
 However, the dictionary list is not sorted into categories, there are no answer choices, a score cannot be shown. 
 It is more of an unorganised flashcard activity than a kanji reading game.
