@@ -1,7 +1,23 @@
-.login {
-  color: var(--mid-shade);
-  font-size: 3em;
-  font-weight: bold;
+.loginArea {
+  padding: 3em;
+}
 
+.login {
+  font-family: "Kozuka Gothic Pro B";
+  display: flex;
   margin: auto;
+  flex-direction: column;
+  color: var(--mid-shade);
+  font-size: 7vw;
+  font-weight: bold;
+  border: 1.5px solid var(--mid-shade);
+  border-radius: 2rem;
+  box-shadow: 0px 2px 3px 1px var(--mid-shade);
+  padding: 5px;
+  background-color: var(--panel-shade);
+}
+
+.login:hover {
+  background-color: var(--panel-mid-shade);
+  box-shadow: 0px 3px 3px 2px var(--mid-shade);
 }
