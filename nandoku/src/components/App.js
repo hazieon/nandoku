@@ -32,11 +32,20 @@ function App() {
   const { isAuthenticated } = useAuth0();
   const [state, dispatch] = useReducer(reducer, initialGame);
 
+  function startGame() {
+    dispatch({ type: "setUpGame" });
+    console.log("setUpGame dispatch called from App", state);
+  }
+
+  function endGame(title) {
+    dispatch({ type: "setUpResults", title: title });
+    console.log("endGame called", title);
+  }
   return (
     <div className={styles.App}>
       <Switch>
         <Route exact path="/flashcardpanel/:title">
-          <FlashcardPanel />
+          <FlashcardPanel start={startGame} end={endGame} />
         </Route>
         <Route path="/results" component={Results} />
 

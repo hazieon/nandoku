@@ -106,7 +106,7 @@ function gameReducer(state, action) {
   }
 }
 
-function FlashcardPanel({ kanji }) {
+function FlashcardPanel({ start, end }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
   const { title } = useParams();
@@ -121,6 +121,17 @@ function FlashcardPanel({ kanji }) {
     );
     console.log({ state }, "loaded ");
   }, [catData, title]);
+
+  useEffect(() => {
+    if (rounds === 0) {
+      dispatch({ type: "gameOver" });
+      console.log("pikachuuuuuuu 1111");
+    }
+  }, [rounds]);
+
+  //make start button successfully reset the game at the end
+  //set rounds set and title in app state on game end
+  //sort out where game over dispatch is called (only in useEffect?)
 
   //function to generate a random kanji, set the answers array, shuffle and set state
   function getRandomKanji() {
@@ -178,7 +189,8 @@ function FlashcardPanel({ kanji }) {
       }
     } else if (rounds === 0) {
       console.log("game over!", "score:", gameState.score, gameState.roundSet);
-      dispatch({ type: "gameOver" });
+      // dispatch({ type: "gameOver" });
+
       return;
     }
   }
@@ -281,10 +293,16 @@ function FlashcardPanel({ kanji }) {
               fontSize: "1.2em",
             }}
             onClick={() => {
-              getRandomKanji();
-              setRounds(rounds - 1);
-              if (state.game === false) {
-                dispatch({ type: "start", set: catData, rounds: rounds });
+              if (rounds > 0) {
+                getRandomKanji();
+                setRounds(rounds - 1);
+                if (state.game === false) {
+                  dispatch({ type: "start", set: catData, rounds: rounds });
+                }
+                // } else {
+                //   dispatch({ type: "gameOver" });
+                //   end(title);
+                //
               }
             }}
           >
@@ -339,6 +357,7 @@ function FlashcardPanel({ kanji }) {
               getRandomKanji();
               if (state.game === false) {
                 dispatch({ type: "start", set: catData, rounds: rounds });
+                start();
               }
             }}
           >
