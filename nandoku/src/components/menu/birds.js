@@ -22,6 +22,7 @@ const birds = [
   { kanji: "孔雀", yomi: "くじゃく" },
   { kanji: "鵯", yomi: "ひよどり" },
   { kanji: "鸚鵡", yomi: "おうむ" },
+  { kanji: "鸚哥", yomi: "いんこ" },
   { kanji: "啄木鳥", yomi: "きつつき" },
   { kanji: "鸛", yomi: "こうのとり" },
   { kanji: "郭公", yomi: "かっこう" },
@@ -32,6 +33,11 @@ const birds = [
   { kanji: "葦雀", yomi: "よしきり" },
   { kanji: "鶸", yomi: "ひわ" },
   { kanji: "雲雀", yomi: "ひばり" },
+  { kanji: "信天翁", yomi: "あほうどり" },
+
+  { kanji: "樹懶", yomi: "なまけもの" },
+  { kanji: "", yomi: "" },
+  { kanji: "", yomi: "" },
 ];
 
 export { birds };

@@ -74,6 +74,9 @@ const general = [
   { kanji: "簪", yomi: "かんざし" },
   { kanji: "嶺", yomi: "れいれい" },
   { kanji: "襖", yomi: "ふすま" },
+  { kanji: "鞦韆", yomi: "ぶらんこ" },
+  { kanji: "護謨", yomi: "ごむ" },
+  { kanji: "撥", yomi: "ばち" },
 ];
 
 export { general };
