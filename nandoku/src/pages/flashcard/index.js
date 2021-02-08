@@ -5,6 +5,7 @@ import Title from "../../components/heading";
 import { useParams } from "react-router-dom";
 import { categories } from "../../components/menu/categories";
 import { Button, Select } from "@chakra-ui/react";
+import Results from "../results";
 
 const shuffle = require("shuffle-array");
 
@@ -344,6 +345,14 @@ function FlashcardPanel({ kanji }) {
             {state.game ? "" : "開始"}
           </Button>
         </div>
+        <Link
+          to={{
+            pathname: "/results",
+            state: { title: title, roundSet: gameState.roundSet },
+          }}
+        >
+          <p className={styles.results}>results</p>
+        </Link>
       </div>
     </>
   );
