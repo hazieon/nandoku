@@ -4,7 +4,11 @@ import { insects } from "./insects";
 import { colours } from "./colours";
 import { weather } from "./weather";
 import { general } from "./general";
+import { animals } from "./animals";
+import { mix } from "./mix";
+
 const categories = [
+  { data: mix, title: "mix", myClass: "cat mix", score: 0 },
   {
     data: general,
     title: "一般",
@@ -23,6 +27,7 @@ const categories = [
     myClass: "cat birds",
     score: 0,
   },
+  { data: animals, title: "動物", myClass: "cat animals", score: 0 },
   {
     data: colours,
     title: "色",
