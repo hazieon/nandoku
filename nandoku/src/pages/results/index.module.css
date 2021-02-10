@@ -1,18 +1,46 @@
 .container {
   max-width: 1300px;
-  height: 100%;
   margin: auto;
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(227, 203, 255, 0.972);
+  background-color: var(--background-shade);
+}
+.backLink {
+  position: relative;
+}
+.link {
+  color: var(--mid-shade);
+  font-size: 3em;
+  font-weight: bolder;
+  position: absolute;
+  top: 0;
+  left: 50px;
+}
+
+.character {
+  font-size: 13vw;
+  letter-spacing: 0.07em;
+  padding: 0px;
+  color: white;
+  user-select: none;
+  text-shadow: 0px 3px 5px var(--mid-shade);
+}
+
+.characterStage {
+  max-height: min-content;
+  text-align: center;
+  display: block;
+  user-select: none;
+  /* border: 1px solid blue; */
+  border-radius: 30px;
 }
 
 .flashcard {
   /* box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493); */
-  box-shadow: 0px 3px 3px 2px rgb(231, 161, 231);
+  box-shadow: 0px 3px 3px 2px var(--light-shade);
   border-radius: 33px;
   min-height: fit-content;
   width: 70%;
@@ -23,5 +51,30 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  background-color: rgba(242, 211, 251, 0.972);
+  background-color: var(--panel-mid-shade);
+}
+
+.responsesContainer {
+  color: black;
+  font-size: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+.score {
+  font-size: 1.3rem;
+}
+
+.startButton {
+  color: black;
+  border: 1px solid var(--mid-shade);
+  margin: 10px;
+  border-radius: 30px;
+  font-size: 1.2em;
+}
+
+.startButtonOff {
+  display: none;
 }
