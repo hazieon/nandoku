@@ -13,6 +13,8 @@ function App() {
       <Switch>
         <Route exact path="/flashcardpanel/:title">
           <FlashcardPanel />
+
+          <Route></Route>
         </Route>
         <Route path="/">{isAuthenticated ? <Menu /> : <Login />}</Route>
       </Switch>

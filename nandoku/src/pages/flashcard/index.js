@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Title from "../../components/heading";
 import { useParams } from "react-router-dom";
 import { categories } from "../../components/menu/categories";
-import { Button, Select, Box, Text, Center, VStack } from "@chakra-ui/react";
+import { Button, Select } from "@chakra-ui/react";
 
 const shuffle = require("shuffle-array");
 
@@ -32,6 +32,7 @@ const gameInitialState = {
   roundSet: [], //kanji in here should not be added again as randomKanji.yomi
   submit: false, //true if data for that q has been submitted - use to disable buttons
 };
+
 //reducer function to update game state object
 function reducer(state, action) {
   switch (action.type) {
