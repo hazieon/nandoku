@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FlashcardPanel from "../pages/flashcard";
 import Login from "../pages/login";
 import { useAuth0 } from "@auth0/auth0-react";
+import Results from "../pages/results";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -13,9 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/flashcardpanel/:title">
           <FlashcardPanel />
-
-          <Route></Route>
         </Route>
+
+        <Route path="/results" component={Results} />
         <Route path="/">{isAuthenticated ? <Menu /> : <Login />}</Route>
       </Switch>
     </div>

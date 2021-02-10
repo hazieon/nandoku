@@ -345,13 +345,10 @@ function FlashcardPanel({ kanji }) {
             {state.game ? "" : "開始"}
           </Button>
         </div>
-        <Link
-          to={{
-            pathname: "/results",
-            state: { title: title, roundSet: gameState.roundSet },
-          }}
-        >
-          <p className={styles.results}>results</p>
+        <Link to="/results">
+          <p className={state.game ? styles.resultsOFF : styles.results}>
+            results
+          </p>
         </Link>
       </div>
     </>
