@@ -3,6 +3,7 @@ import Menu from "./menu";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FlashcardPanel from "../pages/flashcard";
+import Results from "../pages/results";
 import Login from "../pages/login";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,8 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/flashcardpanel/:title">
           <FlashcardPanel />
-
-          <Route></Route>
+        </Route>
+        <Route path="/results">
+          <Results />
         </Route>
         <Route path="/">{isAuthenticated ? <Menu /> : <Login />}</Route>
       </Switch>

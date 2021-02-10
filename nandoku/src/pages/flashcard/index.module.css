@@ -250,3 +250,12 @@
     z-index: 1;
   }
 }
+.resultsOFF {
+  display: none;
+}
+
+.results {
+  border: 1px solid var(--mid-shade);
+  border-radius: 30px;
+  padding: 3px;
+}
