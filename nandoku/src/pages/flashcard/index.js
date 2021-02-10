@@ -356,6 +356,7 @@ function FlashcardPanel({ start, end }) {
             onClick={() => {
               getRandomKanji();
               if (state.game === false) {
+                gameDispatch({ type: "start" });
                 dispatch({ type: "start", set: catData, rounds: rounds });
                 start();
               }
