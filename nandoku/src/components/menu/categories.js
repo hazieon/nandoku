@@ -23,7 +23,7 @@ const categories = [
   },
   {
     data: birds,
-    title: "鳥類",
+    title: "鳥",
     myClass: "cat birds",
     score: 0,
   },

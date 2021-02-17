@@ -40,7 +40,7 @@
 
 .flashcard {
   /* box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493); */
-  box-shadow: 0px 3px 3px 2px var(--light-shade);
+  box-shadow: 0px 2px 4px 2px var(--light-shade);
   border-radius: 33px;
   min-height: fit-content;
   width: 70%;
@@ -255,7 +255,16 @@
 }
 
 .results {
-  border: 1px solid var(--mid-shade);
-  border-radius: 30px;
-  padding: 3px;
+  border: 1px solid var(--light-shade);
+  border-radius: 10px;
+  margin-top: 3px;
+  padding: 4px;
+}
+
+.results:hover {
+  background-color: var(--panel-shade);
+  border: 1px solid var(--light-shade);
+  border-radius: 10px;
+  margin-top: 3px;
+  padding: 4px;
 }
