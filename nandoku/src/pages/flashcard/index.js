@@ -343,6 +343,13 @@ function FlashcardPanel({ kanji }) {
             {state.game ? "" : "開始"}
           </Button>
         </div>
+        <div
+          className={rounds !== 0 ? styles.gameOverLinkNone : styles.backLink}
+        >
+          <Link className={styles.gameOverLink} to={"/"}>
+            ⇦
+          </Link>
+        </div>
         <Link to="/results">
           <p className={state.game ? styles.resultsOFF : styles.results}>
             results
