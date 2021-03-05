@@ -4,9 +4,6 @@
 Playable in a smartphone or PC browser. The game tests the player on their reading knowledge of difficult Japanese kanji characters.
 The characters are difficult for native speakers, not found in the 'regularly used' characters list (常用漢字).
 
-The CSS is based on Japanese cherry blossom aesthetic 🌸.
-
-
 # How To Play:
 ## visit https://nandoku.netlify.app/ 
 (or clone the repo, install the dependencies with npm i and run in the browser with npm start).
@@ -38,7 +35,7 @@ Return to the menu page at any time using the back arrow.
 
 
 ### Upcoming features
-I plan to expand the game by: adding user logins, scores that persist, a 'mixed category' feature, possibly audio readings of kanji characters and definitions.
+I plan to expand the game by: adding user logins, allowing for scores that persist.
 
 
 #### About the game
