@@ -69,7 +69,7 @@ function gameReducer(state, action) {
         score: 0,
         correct: false,
         incorrect: false,
-        roundSet: [],
+        roundSet: action.selectedRoundSet,
         submit: false,
       };
     case "score":
@@ -122,33 +122,65 @@ function FlashcardPanel({ kanji }) {
     console.log({ state }, "loaded ");
   }, [catData, title]);
 
-  //function to generate a random kanji, set the answers array, shuffle and set state
-  function getRandomKanji() {
-    if (rounds > 0) {
-      let randomKanji;
-      let randomIndex = Math.floor(
+  //function to generate a random kanji set and set it in state
+  function getRandomKanjiSet() {
+    //round set of kanji array
+    let selectedRoundSet = [];
+    if (state.game === false) {
+      dispatch({ type: "start", set: catData, rounds: rounds });
+    }
+    //check game is ongoing:
+
+    //for as many rounds there are, run this code:
+    for (let i = 0; selectedRoundSet.length < rounds; i++) {
+      //get a random index and random kanji character
+      const randomIndex = Math.floor(
         Math.random() * (catData.length - 1 - 0 + 1) + 0
       );
-      console.log(state, "state");
-      console.log(gameState, "game state");
-      randomKanji = catData[randomIndex];
-      //check if the random kanji has been used previously in the current game:
-      if (gameState.roundSet.includes(randomKanji)) {
-        //recursion - restart the random kanji generation if true
-        console.log("duplicate! recursion time!");
-        getRandomKanji();
+      const randomKanji = catData[randomIndex];
+
+      if (selectedRoundSet.includes(randomKanji)) {
+        //if the round set already includes that kanji character, use recursion to call the function again
+        console.log("duplicate - recursion time!");
+        getRandomKanjiSet();
       } else {
-        // setRandomKanji(catData[randomIndex]);
-        console.log(randomKanji, "random kanji not in set");
-        //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
-        gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
-        //dispatch to set the current round's kanji:
-        dispatch({
-          type: "setKanji",
-          kanji: randomKanji.kanji,
-          answer: randomKanji.yomi,
-        });
+        console.log("random character");
+        selectedRoundSet = [...selectedRoundSet, randomKanji];
+        //then save this selectedRoundSet array into the game state
       }
+    }
+    console.log(state.rounds, selectedRoundSet.length, "length check");
+    if (selectedRoundSet.length === rounds) {
+      console.log("lengths match!!!!!!!!!!!!!!!!!!!!!");
+
+      gameDispatch({ type: "start", selectedRoundSet: selectedRoundSet });
+      //set game to true here
+
+      console.log(selectedRoundSet);
+    }
+
+    //potentially run the function to set the first kanji on game start:
+    getRandomKanji();
+  }
+
+  //set the question by one kanji:
+  function getRandomKanji() {
+    console.log("get kanji");
+    console.log(rounds, "rounds");
+    console.log(gameState, "game state");
+    if (rounds > 0) {
+      //get a kanji from the random set in state
+      //using rounds number as the index value, which should decrease on each turn
+      let randomKanji = gameState.selectedRoundSet[state.rounds];
+      console.log(randomKanji);
+      dispatch({
+        type: "setKanji",
+        kanji: randomKanji.kanji,
+        answer: randomKanji.yomi,
+      });
+      gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+
+      //call the get answer options function to generate answer options:
       getAnswersOptions();
 
       function getAnswersOptions() {
@@ -176,16 +208,12 @@ function FlashcardPanel({ kanji }) {
         setAnswersOptions(answersArr);
       }
     } else if (rounds === 0) {
-      console.log("game over!", "score:", gameState.score, gameState.roundSet);
+      console.log("game over!");
+      console.log("score:", gameState.score, gameState.roundSet);
       dispatch({ type: "gameOver" });
       return;
     }
   }
-
-  //function to handle whether the chosen option was correct - runs on click
-  //make correct answer button bg colour green, incorrect red
-  //popup 'CORRECT' or 'INCORRECT'
-  //display an x or a check by buttons
 
   function handleResults(ans, i) {
     if (ans === state.yomikata) {
@@ -281,9 +309,11 @@ function FlashcardPanel({ kanji }) {
             onClick={() => {
               getRandomKanji();
               setRounds(rounds - 1);
-              if (state.game === false) {
-                dispatch({ type: "start", set: catData, rounds: rounds });
-              }
+              console.log("rounds:", rounds);
+              // if (state.game === false) {
+              //   getRandomKanjiSet();
+              //   dispatch({ type: "start", set: catData, rounds: rounds });
+              // }
             }}
           >
             {gameState.correct || gameState.incorrect ? "次へ" : "スキップ"}
@@ -334,10 +364,7 @@ function FlashcardPanel({ kanji }) {
             }}
             display={state.game ? "none" : true}
             onClick={() => {
-              getRandomKanji();
-              if (state.game === false) {
-                dispatch({ type: "start", set: catData, rounds: rounds });
-              }
+              getRandomKanjiSet();
             }}
           >
             {state.game ? "" : "開始"}
@@ -361,3 +388,34 @@ function FlashcardPanel({ kanji }) {
 }
 
 export default FlashcardPanel;
+
+// let randomKanji;
+// let randomIndex = Math.floor(
+//   Math.random() * (catData.length - 1 - 0 + 1) + 0
+// );
+// console.log(state, "state");
+// console.log(gameState, "game state");
+// randomKanji = catData[randomIndex];
+// //check if the random kanji has been used previously in the current game:
+// if (gameState.roundSet.includes(randomKanji)) {
+//   //recursion - restart the random kanji generation if true
+//   console.log("duplicate! recursion time!");
+//   getRandomKanji();
+// } else {
+//   // setRandomKanji(catData[randomIndex]);
+//   console.log(randomKanji, "random kanji not in set");
+//   //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
+//   gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+//   //dispatch to set the current round's kanji:
+//   dispatch({
+//     type: "setKanji",
+//     kanji: randomKanji.kanji,
+//     answer: randomKanji.yomi,
+//   });
+// }
+// getAnswersOptions();
+
+//function to handle whether the chosen option was correct - runs on click
+//make correct answer button bg colour green, incorrect red
+//popup 'CORRECT' or 'INCORRECT'
+//display an x or a check by buttons
