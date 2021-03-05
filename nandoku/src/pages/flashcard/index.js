@@ -130,14 +130,16 @@ function FlashcardPanel({ kanji }) {
       dispatch({ type: "start", set: catData, rounds: rounds });
     }
     //check game is ongoing:
+    console.log(rounds, "rounds");
 
     //for as many rounds there are, run this code:
-    for (let i = 0; selectedRoundSet.length < rounds; i++) {
+    while (selectedRoundSet.length < rounds) {
+      // for (let i = 0; i < rounds; i++) {
       //get a random index and random kanji character
       const randomIndex = Math.floor(
         Math.random() * (catData.length - 1 - 0 + 1) + 0
       );
-      const randomKanji = catData[randomIndex];
+      let randomKanji = catData[randomIndex];
 
       if (selectedRoundSet.includes(randomKanji)) {
         //if the round set already includes that kanji character, use recursion to call the function again
@@ -152,15 +154,16 @@ function FlashcardPanel({ kanji }) {
     console.log(state.rounds, selectedRoundSet.length, "length check");
     if (selectedRoundSet.length === rounds) {
       console.log("lengths match!!!!!!!!!!!!!!!!!!!!!");
-
-      gameDispatch({ type: "start", selectedRoundSet: selectedRoundSet });
-      //set game to true here
-
       console.log(selectedRoundSet);
+      return gameDispatch({
+        type: "start",
+        selectedRoundSet: selectedRoundSet,
+      });
+      //set game to true here
     }
 
     //potentially run the function to set the first kanji on game start:
-    getRandomKanji();
+    // getRandomKanji();
   }
 
   //set the question by one kanji:
@@ -171,47 +174,49 @@ function FlashcardPanel({ kanji }) {
     if (rounds > 0) {
       //get a kanji from the random set in state
       //using rounds number as the index value, which should decrease on each turn
-      let randomKanji = gameState.selectedRoundSet[state.rounds];
-      console.log(randomKanji);
-      dispatch({
-        type: "setKanji",
-        kanji: randomKanji.kanji,
-        answer: randomKanji.yomi,
-      });
-      gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
+      console.log(gameState);
+      //   let randomKanji = gameState.roundSet[state.rounds];
+      //   console.log(randomKanji);
+      //   dispatch({
+      //     type: "setKanji",
+      //     kanji: randomKanji.kanji,
+      //     answer: randomKanji.yomi,
+      //   });
+      //   gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
 
-      //call the get answer options function to generate answer options:
-      getAnswersOptions();
+      //   //call the get answer options function to generate answer options:
+      //   getAnswersOptions();
 
-      function getAnswersOptions() {
-        let answersArr = [randomKanji.yomi];
-        while (answersArr.length < 5) {
-          let randomAnswer =
-            catData[
-              Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
-            ].yomi;
-          if (answersArr.includes(randomAnswer)) {
-            console.log("includes");
-            //recursion if already included: avoids duplicates & regenerates answers arr
-            getAnswersOptions();
-          } else {
-            // console.log("no includes");
-            // console.log(answersArr);
-            // answersArr.push(randomAnswer);
-            answersArr = [...answersArr, randomAnswer];
-          }
-        }
-        console.log({ answersArr }, "answers array without duplicates");
+      //   function getAnswersOptions() {
+      //     let answersArr = [randomKanji.yomi];
+      //     while (answersArr.length < 5) {
+      //       let randomAnswer =
+      //         catData[
+      //           Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
+      //         ].yomi;
+      //       if (answersArr.includes(randomAnswer)) {
+      //         console.log("includes");
+      //         //recursion if already included: avoids duplicates & regenerates answers arr
+      //         getAnswersOptions();
+      //       } else {
+      //         // console.log("no includes");
+      //         // console.log(answersArr);
+      //         // answersArr.push(randomAnswer);
+      //         answersArr = [...answersArr, randomAnswer];
+      //       }
+      //     }
+      //     console.log({ answersArr }, "answers array without duplicates");
 
-        //shuffle the answers array using an npm package method:
-        shuffle(answersArr);
-        setAnswersOptions(answersArr);
-      }
-    } else if (rounds === 0) {
-      console.log("game over!");
-      console.log("score:", gameState.score, gameState.roundSet);
-      dispatch({ type: "gameOver" });
-      return;
+      //     //shuffle the answers array using an npm package method:
+      //     shuffle(answersArr);
+      //     setAnswersOptions(answersArr);
+      //   }
+      // } else if (rounds === 0) {
+      //   console.log("game over!");
+      //   console.log("score:", gameState.score, gameState.roundSet);
+      //   dispatch({ type: "gameOver" });
+      //   return;
+      // }
     }
   }
 
