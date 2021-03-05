@@ -13,9 +13,9 @@
   font-size: 9vw;
   font-family: "MS PGothic";
   user-select: none;
-  color: var(--deep-shade);
+  color: rgb(238, 247, 255);
   padding: 3px;
-  text-shadow: 2px 2px 2px var(--mid-shade);
+  text-shadow: 3px 5px 4px #1488cc;
 }
 
 .welcome {
@@ -23,8 +23,11 @@
   font-family: "MS PGothic";
   user-select: none;
   padding: 3px;
-  text-shadow: 2px 3px 3px var(--deep-shade);
+  text-shadow: 5px 7px 4px #151b83;
 }
 
 /* font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka,
     "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; */
+
+/* background: linear-gradient(to bottom, #2b32b2, #1488cc);
+#1c1e57; */

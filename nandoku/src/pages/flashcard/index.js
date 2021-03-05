@@ -140,7 +140,6 @@ function FlashcardPanel({ kanji }) {
       } else {
         // setRandomKanji(catData[randomIndex]);
         console.log(randomKanji, "random kanji not in set");
-
         //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
         gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
         //dispatch to set the current round's kanji:
