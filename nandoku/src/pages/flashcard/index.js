@@ -163,6 +163,7 @@ function FlashcardPanel({ kanji }) {
     }
 
     //potentially run the function to set the first kanji on game start:
+    //causes infinite rerendering...
     // getRandomKanji();
   }
 
@@ -174,7 +175,7 @@ function FlashcardPanel({ kanji }) {
     if (rounds > 0) {
       //get a kanji from the random set in state
       //using rounds number as the index value, which should decrease on each turn
-      console.log(gameState);
+      return console.log(gameState);
       //   let randomKanji = gameState.roundSet[state.rounds];
       //   console.log(randomKanji);
       //   dispatch({
