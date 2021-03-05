@@ -203,7 +203,7 @@ function FlashcardPanel({ kanji }) {
   }
 
   return (
-    <>
+    <div className={styles.page}>
       <div className={styles.backLink}>
         <Link className={styles.link} to={"/"}>
           ⇦
@@ -211,9 +211,7 @@ function FlashcardPanel({ kanji }) {
       </div>
       <div className={styles.container}>
         <div>
-          <Title
-            text={rounds === 0 ? "🌸 終了 🌸" : "🌸 " + title + " 🌸"}
-          ></Title>
+          <Title text={rounds === 0 ? " 終了 " : title}></Title>
         </div>
 
         <h2 className={styles.score}>
@@ -274,9 +272,10 @@ function FlashcardPanel({ kanji }) {
             display={gameState.submit ? true : "none"}
             style={{
               color: "black",
-              border: "1px solid var(--mid-shade)",
+              backgroundColor: "aliceblue",
+              border: "1px solid var(--deep-shade)",
               margin: "10px",
-              borderRadius: "30px",
+              borderRadius: "10px",
               fontSize: "1.2em",
             }}
             onClick={() => {
@@ -350,7 +349,7 @@ function FlashcardPanel({ kanji }) {
           </p>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
 

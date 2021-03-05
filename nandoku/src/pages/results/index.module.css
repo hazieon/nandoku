@@ -6,7 +6,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-shade);
 }
 .backLink {
   position: relative;
@@ -40,7 +39,7 @@
 
 .flashcard {
   /* box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493); */
-  box-shadow: 0px 3px 3px 2px var(--light-shade);
+  box-shadow: 0px 3px 5px 4px rgba(96, 94, 199, 0.78);
   border-radius: 33px;
   min-height: fit-content;
   width: 70%;
@@ -51,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  background-color: var(--panel-mid-shade);
+  background-color: rgb(166, 194, 255);
 }
 
 .responsesContainer {

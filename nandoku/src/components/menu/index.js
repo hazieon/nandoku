@@ -16,7 +16,7 @@ function Menu() {
           <LogoutButton />
         </div>
       </div>
-      <Title text="🌸 ナンドク 🌸"></Title>
+      <Title text="ナンドク"></Title>
       <div className={styles.panel}>
         {categories.map((c, i) => {
           return (

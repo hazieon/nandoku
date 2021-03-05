@@ -1,3 +1,14 @@
+.page {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(98, 113, 255, 0.78);
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(62, 161, 219, 1) 11.2%,
+    rgba(93, 52, 236, 1) 100.2%
+  );
+}
+
 .container {
   max-width: 1300px;
   margin: auto;
@@ -6,13 +17,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-shade);
+  background-position: center;
+  background-attachment: fixed;
 }
 .backLink {
   position: relative;
 }
 .link {
-  color: var(--mid-shade);
+  color: var(--deep-shade);
+  text-shadow: 1px 1px 2px rgba(58, 71, 185, 0.78);
   font-size: 3em;
   font-weight: bolder;
   position: absolute;
@@ -26,7 +39,7 @@
   padding: 0px;
   color: white;
   user-select: none;
-  text-shadow: 0px 3px 5px var(--mid-shade);
+  text-shadow: 2px 5px 5px var(--deep-shade);
 }
 
 .characterStage {
@@ -40,18 +53,19 @@
 
 .flashcard {
   /* box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.493); */
-  box-shadow: 0px 2px 4px 2px var(--light-shade);
-  border-radius: 33px;
+  box-shadow: 0px 1px 5px 3px var(--deep-shade);
+  border-radius: 25px;
   min-height: fit-content;
   width: 70%;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   padding: 1.3rem;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   margin: auto;
-  background-color: var(--panel-mid-shade);
+  background-color: rgb(196, 221, 243);
+  transition: 0.5s ease;
 }
 
 .responsesContainer {
@@ -66,13 +80,15 @@
 .answerButton {
   font-size: 2em;
   color: black;
-  box-shadow: 0px 1px 3px 2px var(--mid-shade);
+  box-shadow: 0px 1px 3px 2px var(--deep-shade);
   margin: 4px;
+  background-color: rgb(224, 227, 255);
+  transition: 0.5s ease;
 }
 .answerButton:hover {
   color: black;
   box-shadow: 0px 3px 6px 3px var(--deep-shade);
-  background-color: var(--panel-mid-shade);
+  background-color: aliceblue;
 }
 .answerButton:focus {
   color: black;
@@ -89,9 +105,9 @@
   font-size: 1.3rem;
 }
 .correctMessage {
-  background-color: rgb(243, 233, 255);
-  box-shadow: 0px 3px 6px 3px rgb(177, 231, 161);
-  border: 1px solid rgba(32, 32, 32, 0.938);
+  background-color: rgb(235, 237, 255);
+  box-shadow: 0px 2px 7px 2px #51b9f5;
+  border: 1px solid #44a7e0;
   color: black;
   font-size: 13vw;
   border-radius: 30px;
@@ -101,12 +117,13 @@
   margin: auto;
   z-index: 1;
   display: block;
+  filter: saturate(150%);
 }
 
 .incorrectMessage {
-  background-color: rgb(243, 233, 255);
+  background-color: rgb(235, 237, 255);
   box-shadow: 0px 3px 6px 3px rgb(230, 148, 148);
-  border: 1px solid black;
+  border: 1px solid plum;
   color: black;
   user-select: none;
   font-size: 10vw;
@@ -118,9 +135,9 @@
 }
 
 .gameOver {
-  background-color: rgb(243, 233, 255);
-  box-shadow: 0px 3px 6px 3px var(--mid-shade);
-  border: 1px solid black;
+  background-color: rgb(240, 247, 255);
+  box-shadow: 0px 3px 6px 3px var(--deep-shade);
+  border: 1px solid var(--deep-shade);
   color: black;
   display: flex;
   flex-direction: column;
@@ -138,14 +155,36 @@
 
 .startButton {
   color: black;
-  border: 1px solid var(--mid-shade);
+  background-color: rgb(224, 227, 255);
+  border: 1px solid var(--deep-shade);
   margin: 10px;
   border-radius: 30px;
   font-size: 1.2em;
 }
-
+.startButton:hover {
+  background-color: rgb(187, 207, 235);
+}
 .startButtonOff {
   display: none;
+}
+
+.resultsOFF {
+  display: none;
+}
+
+.results {
+  font-weight: bold;
+  background-color: rgb(192, 224, 252);
+  color: black;
+  border: 2px solid var(--mid-shade);
+  border-radius: 8px;
+  margin-top: 3px;
+  padding: 4px 12px;
+}
+
+.results:hover {
+  background-color: rgb(209, 227, 243);
+  border: 2px solid var(--mid-shade);
 }
 
 @media only screen and (max-width: 768px) {
@@ -164,7 +203,19 @@
     display: block;
     user-select: none;
     /* border: 1px solid blue; */
-    border-radius: 30px;
+    border-radius: 25px;
+  }
+  .answerButton {
+    font-size: 2.2em;
+  }
+  .correctMessage {
+    border-radius: 10px;
+  }
+  .incorrectMessage {
+    border-radius: 10px;
+  }
+  .gameOver {
+    border-radius: 10px;
   }
 }
 
@@ -194,7 +245,7 @@
     padding: 0px;
     color: white;
     user-select: none;
-    text-shadow: 0px 3px 5px var(--mid-shade);
+    text-shadow: 0px 6px 7px var(--deep-shade);
   }
 
   .characterStage {
@@ -207,9 +258,6 @@
   }
 
   .correctMessage {
-    background-color: rgb(243, 233, 255);
-    box-shadow: 0px 3px 6px 3px rgb(177, 231, 161);
-    border: 1px solid rgba(32, 32, 32, 0.938);
     color: black;
     font-size: 8vw;
     border-radius: 30px;
@@ -222,9 +270,6 @@
   }
 
   .incorrectMessage {
-    background-color: rgb(243, 233, 255);
-    box-shadow: 0px 3px 6px 3px rgb(230, 148, 148);
-    border: 1px solid black;
     color: black;
     user-select: none;
     font-size: 8vw;
@@ -236,9 +281,6 @@
   }
 
   .gameOver {
-    background-color: rgb(243, 233, 255);
-    box-shadow: 0px 3px 6px 3px var(--mid-shade);
-    border: 1px solid black;
     color: black;
     display: flex;
     flex-direction: column;
@@ -249,22 +291,4 @@
     margin: 0;
     z-index: 1;
   }
-}
-.resultsOFF {
-  display: none;
-}
-
-.results {
-  border: 1px solid var(--light-shade);
-  border-radius: 10px;
-  margin-top: 3px;
-  padding: 4px;
-}
-
-.results:hover {
-  background-color: var(--panel-shade);
-  border: 1px solid var(--light-shade);
-  border-radius: 10px;
-  margin-top: 3px;
-  padding: 4px;
 }

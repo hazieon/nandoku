@@ -3,21 +3,26 @@
   justify-content: center;
   /* border: 3px solid red; */
 }
+
 .box {
+  border: 1.3px solid rgba(98, 113, 255, 0.78);
   border-radius: 30%;
-  background-color: var(--panel-shade);
+  background-color: rgb(196, 221, 243);
   margin-bottom: 0.07rem;
-  color: var(--light-shade);
+  color: rgba(89, 104, 247, 0.78);
   padding: 1.5rem;
-  box-shadow: 0px 4px 5px 2px var(--light-shade);
+  box-shadow: 0px 3px 5px 3px rgba(58, 74, 214, 0.78);
   user-select: none;
+  transition: 0.5s ease;
 }
 
 .box:hover {
-  background-color: var(--panel-mid-shade);
-  box-shadow: 0px 5px 6px 3px var(--light-shade);
+  border: 0.5px solid rgba(62, 161, 219, 1);
+  color: white;
+  background-color: rgb(112, 173, 235);
+  box-shadow: 0px 4px 5px 3px rgba(62, 161, 219, 1);
+  filter: saturate(150%);
 }
-
 .textBox {
   /* text-transform: uppercase; */
   font-size: 3em;
