@@ -17,6 +17,11 @@ const shuffle = require("shuffle-array");
 //useReducer state - initial text (category name kanji or some image)
 //render random index of kanji array and 4 potential answers
 
+//everytime choosing a new character, remove it from the array -> can't be chosen again
+//array is smaller too and can't get same twice
+//start a new array of asked questions, check if it is contained in that already
+//keep the INDEX of the used item, rather than actual item
+
 const initialState = {
   game: false,
   rounds: 10, //up to 10 max (or customise later); if rounds <10 'next', else results
@@ -119,8 +124,9 @@ function FlashcardPanel({ kanji }) {
     setCatData(
       categories.find((categoryData) => categoryData.title === title).data
     );
+    //dependency array items: catData, title
     console.log({ state }, "loaded ");
-  }, [catData, title]);
+  }, []);
 
   //function to generate a random kanji, set the answers array, shuffle and set state
   function getRandomKanji() {
@@ -132,6 +138,12 @@ function FlashcardPanel({ kanji }) {
       console.log(state, "state");
       console.log(gameState, "game state");
       randomKanji = catData[randomIndex];
+
+      console.log(catData, "catData");
+      let catDataArray = catData.filter((item, index) => index !== randomIndex);
+      setCatData(catDataArray);
+      console.log(catDataArray, "catDataArray");
+
       //check if the random kanji has been used previously in the current game:
       console.log(gameState.roundSet, "round set here!!!!!!!!!!!!!");
       if (gameState.roundSet.includes(randomKanji)) {
@@ -335,6 +347,7 @@ function FlashcardPanel({ kanji }) {
             onClick={() => {
               getRandomKanji();
               if (state.game === false) {
+                //could here already cut down catData set -> use this set to choose new ?
                 dispatch({ type: "start", set: catData, rounds: rounds });
               }
             }}
