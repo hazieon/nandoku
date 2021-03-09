@@ -133,13 +133,12 @@ function FlashcardPanel({ kanji }) {
       console.log(gameState, "game state");
       randomKanji = catData[randomIndex];
       //check if the random kanji has been used previously in the current game:
+      console.log(gameState.roundSet, "round set here!!!!!!!!!!!!!");
       if (gameState.roundSet.includes(randomKanji)) {
         //recursion - restart the random kanji generation if true
         console.log("duplicate! recursion time!");
         getRandomKanji();
       } else {
-        // setRandomKanji(catData[randomIndex]);
-        console.log(randomKanji, "random kanji not in set");
         //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
         gameDispatch({ type: "nextQuestion", usedKanji: randomKanji.kanji });
         //dispatch to set the current round's kanji:
