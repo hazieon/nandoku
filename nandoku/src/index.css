@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --background-shade: #bca0ff;
   --secondary-shade: rgba(227, 203, 255, 0.972);
   --panel-shade: #e2c3ff;
@@ -6,7 +6,7 @@
   --deep-shade: #7556ca;
   --mid-shade: #9b77f0;
   --light-shade: #847cfc;
-}
+} */
 
 html,
 body,
@@ -19,6 +19,7 @@ body,
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
 }
 
 code {

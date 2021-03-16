@@ -1,10 +1,10 @@
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   margin: 0 auto;
   padding: 30px;
   background-color: white;
-  background-attachment: fixed;
+
   /* background-image: linear-gradient(
     109.6deg,
     rgba(39, 142, 255, 1) 11.2%,
@@ -15,6 +15,9 @@
     rgba(62, 161, 219, 1) 11.2%,
     rgba(93, 52, 236, 1) 100.2%
   );
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100%;
 }
 
 .panel {

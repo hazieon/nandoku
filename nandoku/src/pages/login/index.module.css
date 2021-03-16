@@ -2,6 +2,8 @@
   padding: 50px;
   margin: auto;
   text-align: center;
+
+  background-attachment: fixed;
 }
 .welcomeMessage {
   display: flex;

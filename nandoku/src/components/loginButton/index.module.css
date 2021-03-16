@@ -15,9 +15,7 @@
   box-shadow: 0px 2px 3px 1px #1c1e57;
   text-shadow: 2px 3px 5px #1c1e57;
   padding: 2px 35px;
-  /* background-color: var(--panel-shade); */
   background: linear-gradient(to top, #2b32b2, #1488cc);
-
   transition: 0.5s ease;
 }
 
@@ -29,5 +27,3 @@
   background-size: 200% auto;
   background-position: right center;
 }
-
-/* background-image: linear-gradient( 94.3deg,  rgba(104,213,253,0.63) 0.7%, rgba(169,236,91,0.79) 18.6%, rgba(253,246,116,0.98) 39.1%, rgba(255,164,120,0.92) 63%, rgba(250,115,188,0.89) 85.3%, rgba(97,176,242,1) 108.2% ); */
