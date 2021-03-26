@@ -14,7 +14,6 @@ function CatPanel({ link, kanji, title, myClass, src, alt, id, score }) {
         </Box>
         <Box className={styles.textBox}>
           <Text id={id}>{score}</Text>
-          {/* <Text className={styles.textBox}>{subheading}</Text> */}
         </Box>
       </VStack>
     </Center>

@@ -1,12 +1,12 @@
-/* :root {
+:root {
   --background-shade: #bca0ff;
   --secondary-shade: rgba(227, 203, 255, 0.972);
   --panel-shade: #e2c3ff;
   --panel-mid-shade: #e6d6ff;
-  --deep-shade: #7556ca;
+  --deep-shade: rgb(89, 89, 192);
   --mid-shade: #9b77f0;
-  --light-shade: #847cfc;
-} */
+  --light-shade: #7f77ec;
+}
 
 html,
 body,

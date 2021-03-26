@@ -124,8 +124,6 @@ function FlashcardPanel({ kanji }) {
     setCatData(
       categories.find((categoryData) => categoryData.title === title).data
     );
-    //dependency array items: catData, title
-    console.log({ state }, "loaded ");
   }, []);
 
   //function to generate a random kanji, set the answers array, shuffle and set state
@@ -135,20 +133,15 @@ function FlashcardPanel({ kanji }) {
       let randomIndex = Math.floor(
         Math.random() * (catData.length - 1 - 0 + 1) + 0
       );
-      console.log(state, "state");
-      console.log(gameState, "game state");
       randomKanji = catData[randomIndex];
 
-      console.log(catData, "catData");
       let catDataArray = catData.filter((item, index) => index !== randomIndex);
       setCatData(catDataArray);
-      console.log(catDataArray, "catDataArray");
 
       //check if the random kanji has been used previously in the current game:
-      console.log(gameState.roundSet, "round set here!!!!!!!!!!!!!");
       if (gameState.roundSet.includes(randomKanji)) {
         //recursion - restart the random kanji generation if true
-        console.log("duplicate! recursion time!");
+        console.log("duplicate question! recursion.");
         getRandomKanji();
       } else {
         //dispatch to set states of 'correct' and add to 'used kanji' array to track questions:
@@ -170,24 +163,20 @@ function FlashcardPanel({ kanji }) {
               Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
             ].yomi;
           if (answersArr.includes(randomAnswer)) {
-            console.log("includes");
             //recursion if already included: avoids duplicates & regenerates answers arr
             getAnswersOptions();
           } else {
-            // console.log("no includes");
-            // console.log(answersArr);
-            // answersArr.push(randomAnswer);
+            // mutable method: answersArr.push(randomAnswer);
+            //immutable method:
             answersArr = [...answersArr, randomAnswer];
           }
         }
-        console.log({ answersArr }, "answers array without duplicates");
-
         //shuffle the answers array using an npm package method:
         shuffle(answersArr);
         setAnswersOptions(answersArr);
       }
     } else if (rounds === 0) {
-      console.log("game over!", "score:", gameState.score, gameState.roundSet);
+      console.log("game over!");
       dispatch({ type: "gameOver" });
       return;
     }
@@ -200,14 +189,13 @@ function FlashcardPanel({ kanji }) {
 
   function handleResults(ans, i) {
     if (ans === state.yomikata) {
-      console.log("正解です！", gameState.score);
-      // console.log(answersOptions[i], "answer");
       //dispatch method updates the user's score +1 if they are correct
+      console.log("correct");
       gameDispatch({ type: "score" });
       setCorrect(true);
       //answersOptions[i] = `${answersOptions[i]} ☑`;
     } else {
-      console.log("ばつ！");
+      console.log("incorrect");
       gameDispatch({ type: "noScore" });
       setCorrect(false);
     }

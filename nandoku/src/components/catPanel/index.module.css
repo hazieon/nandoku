@@ -33,27 +33,16 @@
 }
 /* css for responsive text, box, etc dimensions: */
 @media only screen and (max-width: 499px) {
-  /* .categoryName {
-      font-size: 0.9rem;
-    } */
-
   .textBox {
     font-size: 1.5rem;
   }
 }
 @media only screen and (min-width: 500px) {
-  /* .categoryName {
-    font-size: 0.9rem;
-  } */
-
   .textBox {
     font-size: 1.5rem;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* .categoryName {
-    font-size: 1.5rem;
-  } */
   .box {
     padding: 2rem;
   }
@@ -63,9 +52,6 @@
 }
 
 @media only screen and (min-width: 996px) {
-  /* .categoryName {
-    font-size: 1.8rem;
-  } */
   .box {
     padding: 2.5rem;
   }

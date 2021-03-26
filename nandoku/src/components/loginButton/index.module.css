@@ -17,6 +17,8 @@
   padding: 2px 35px;
   background: linear-gradient(to top, #2b32b2, #1488cc);
   transition: 0.5s ease;
+  
+  
 }
 
 .login:hover {
