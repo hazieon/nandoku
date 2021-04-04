@@ -115,12 +115,18 @@ function FlashcardPanel({ kanji }) {
   const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
   const { title } = useParams();
   const [catData, setCatData] = useState(false);
+  const [potentialAnswerOptionsArr, setPotentialAnswerOptionsArr] = useState(
+    []
+  );
   const [answersOptions, setAnswersOptions] = useState([]);
   const [correct, setCorrect] = useState(null);
   const [rounds, setRounds] = useState(10);
 
   useEffect(() => {
     setCatData(
+      categories.find((categoryData) => categoryData.title === title).data
+    );
+    setPotentialAnswerOptionsArr(
       categories.find((categoryData) => categoryData.title === title).data
     );
   }, []);
@@ -158,8 +164,11 @@ function FlashcardPanel({ kanji }) {
         let answersArr = [randomKanji.yomi];
         while (answersArr.length < 5) {
           let randomAnswer =
-            catData[
-              Math.floor(Math.random() * (catData.length - 1 - 0 + 1) + 0)
+            potentialAnswerOptionsArr[
+              Math.floor(
+                Math.random() * (potentialAnswerOptionsArr.length - 1 - 0 + 1) +
+                  0
+              )
             ].yomi;
           if (answersArr.includes(randomAnswer)) {
             //recursion if already included: avoids duplicates & regenerates answers arr
