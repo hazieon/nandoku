@@ -6,6 +6,7 @@ import { weather } from "./weather";
 import { general } from "./general";
 import { animals } from "./animals";
 import { mix } from "./mix";
+import { countries } from "./countries";
 
 const categories = [
   { data: mix, title: "mix", myClass: "cat mix", score: 0 },
@@ -46,6 +47,12 @@ const categories = [
     myClass: "cat insects",
     score: 0,
   },
+  {
+    data: countries,
+    title: "国名",
+    myClass: "cat countries",
+    score: 0,
+  },
 ];
 
 // {
@@ -56,6 +63,3 @@ const categories = [
 //   },
 
 export { categories };
-
-//categories to create:
-//fish/sea creatures 魚類 魚へん, countries, random mix button

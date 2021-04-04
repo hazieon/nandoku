@@ -8,23 +8,22 @@ import { Button, Select } from "@chakra-ui/react";
 
 const shuffle = require("shuffle-array");
 
-//bring in kanji as props
-//on button press (start/next), display a random kanji from the array
-//display random option answers from the array (or multi char input)
-//show correct/incorrect on 'submit' (stretch:or time up)
-//show 10 kanji per round, then show results
+//bring in kanji list as chosen by user
+//on button press (start), a random kanji is shown from the array
+//display multiple choice option answers from the array, random set
+//show correct/incorrect on 'submit' (stretch: on time up)
+//show until rounds reaches 0, then show results
 
-//useReducer state - initial text (category name kanji or some image)
-//render random index of kanji array and 4 potential answers
+//useReducer to store and manipulate state
 
 //everytime choosing a new character, remove it from the array -> can't be chosen again
 //array is smaller too and can't get same twice
-//start a new array of asked questions, check if it is contained in that already
-//keep the INDEX of the used item, rather than actual item
+
+//KNOWN ISSUE - removing item from array removes it from being an answer option - ERROR!
 
 const initialState = {
   game: false,
-  rounds: 10, //up to 10 max (or customise later); if rounds <10 'next', else results
+  rounds: 10, //default value
   kanji: "字",
   yomikata: "かんじ",
   kanjiSet: [],
@@ -34,8 +33,8 @@ const gameInitialState = {
   score: 0,
   correct: false,
   incorrect: false,
-  roundSet: [], //kanji in here should not be added again as randomKanji.yomi
-  submit: false, //true if data for that q has been submitted - use to disable buttons
+  roundSet: [], //kanji used in the round
+  submit: false, //initial value
 };
 
 //reducer function to update game state object
@@ -214,7 +213,7 @@ function FlashcardPanel({ kanji }) {
         </div>
 
         <h2 className={styles.score}>
-          {gameState.score}/{state.rounds}
+          {Math.floor(gameState.score)}/{state.rounds}
         </h2>
         <div className={styles.flashcard}>
           <div className={styles.characterStage}>
@@ -316,7 +315,11 @@ function FlashcardPanel({ kanji }) {
             <option
               value="50"
               onClick={() => {
-                setRounds(50);
+                if (catData.length >= 50) {
+                  setRounds(50);
+                } else {
+                  setRounds(20);
+                }
               }}
             >
               50
