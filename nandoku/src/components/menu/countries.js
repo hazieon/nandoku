@@ -21,7 +21,6 @@ const countries = [
   { kanji: "土耳古", yomi: "トルコ" },
   { kanji: "諾威", yomi: "ノルウェー" },
   { kanji: "仏蘭西", yomi: "フランス" },
-
   { kanji: "盧森堡", yomi: "ルクセンブルク" },
   { kanji: "緬甸", yomi: "ミャンマー" },
   { kanji: "黎巴嫩", yomi: "レバノン" },

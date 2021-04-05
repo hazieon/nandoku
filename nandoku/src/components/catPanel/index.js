@@ -2,7 +2,7 @@ import { Box, Text, Center, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./index.module.css";
 
-function CatPanel({ link, kanji, title, myClass, src, alt, id, score }) {
+function CatPanel({ title, alt, id, score }) {
   // console.log({ link }, { kanji }, { title });
   return (
     <Center>
@@ -20,3 +20,5 @@ function CatPanel({ link, kanji, title, myClass, src, alt, id, score }) {
   );
 }
 export default CatPanel;
+
+//{ link, kanji, title, myClass, src, alt, id, score })

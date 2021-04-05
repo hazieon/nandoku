@@ -1,5 +1,4 @@
 .container {
-  /* height: 100vh; */
   width: 100%;
   margin: 0 auto;
   padding: 30px;
@@ -26,8 +25,9 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  /* border: 3px solid purple; */
+  font-family: "MS PGothic";
 }
+
 .panel section {
   margin: 1.5rem;
   max-width: 230px;
@@ -39,8 +39,8 @@
   justify-content: center;
   text-align: center;
   position: relative;
-  /* border: 3px solid blue; */
 }
+
 .userLogin {
   position: relative;
   padding: 10px;

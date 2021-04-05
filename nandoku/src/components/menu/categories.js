@@ -7,6 +7,7 @@ import { general } from "./general";
 import { animals } from "./animals";
 import { mix } from "./mix";
 import { countries } from "./countries";
+import { fish } from "./fish";
 
 const categories = [
   { data: mix, title: "mix", myClass: "cat mix", score: 0 },
@@ -53,7 +54,15 @@ const categories = [
     myClass: "cat countries",
     score: 0,
   },
+  {
+    data: fish,
+    title: "魚類",
+    myClass: "cat fish",
+    score: 0,
+  },
 ];
+
+//"魚介類"
 
 // {
 //     link:"/",

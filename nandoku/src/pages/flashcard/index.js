@@ -190,10 +190,9 @@ function FlashcardPanel({ kanji }) {
     }
   }
 
-  //function to handle whether the chosen option was correct - runs on click
-  //make correct answer button bg colour green, incorrect red
+  //function to handle whether the chosen option was correct - on click
   //popup 'CORRECT' or 'INCORRECT'
-  //display an x or a check by buttons
+  //shows the correct answer if user was inncorrect
 
   function handleResults(ans, i) {
     if (ans === state.yomikata) {
