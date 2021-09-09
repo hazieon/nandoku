@@ -18,10 +18,13 @@ function App() {
         <Route path="/results">
           <Results />
         </Route>
-        <Route path="/">{isAuthenticated ? <Menu /> : <Login />}</Route>
+        <Route path="/">
+          <Menu />
+        </Route>
       </Switch>
     </div>
   );
 }
 
 export default App;
+//{isAuthenticated ? <Menu /> : <Login />}
