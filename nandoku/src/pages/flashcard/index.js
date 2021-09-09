@@ -361,11 +361,11 @@ function FlashcardPanel({ kanji }) {
             ⇦
           </Link>
         </div>
-        <Link to="/results">
+        {/* <Link to="/results">
           <p className={state.game ? styles.resultsOFF : styles.results}>
             results
           </p>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
